@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Luis F. Iglesias-Martinez, Barbara de Kegel and Walter Kolch" />
+
+
+<title>KBoostv</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">KBoostv</h1>
+<h4 class="author">Luis F. Iglesias-Martinez, Barbara de Kegel and Walter Kolch</h4>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>KBoost is a gene regulatory network inference algorithm. It builds several models unsing kernel principal components regression and boosting and from them estimates the probability that each transcription factor regulates a gene. KBoost has one main function: kboost and a case specific function, kboost_human_symbol.</p>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<div id="aupr_auroc_matrixnetg_mat" class="section level4">
+<h4>AUPR_AUROC_matrix(Net,G_mat)</h4>
+<p>Function to calculate the AUROC and AUPR of a known network.This function was made to test the R implementation of the KBoost Package. Input: Net: An inferred networks with the predictive probabilities that a transcription factor regulates a gene. G_mat: A matrix with the gold standard network. auto_remove: TRUE if the auto-regulation is to be discarded. TFs: the indexes of the rows of Net that are TFs. Output: A list with the following fields: AUPR: the area under the Precision Recall curve. AUROC: the area under the Receiver Operator curve. th: All the unique values of Net. Prec: The values of precision at each value of th. Rec: The values of recall at each value of th. FPR: The values of false positive rate at each value of th. TP: The true positives at each value of th. FP: The false positives at each value of th. TN: The true negatives at each value of th. FN: The false negatives at each value of th.</p>
+</div>
+<div id="kernel_pc_boostingxygvitethr" class="section level4">
+<h4>kernel_pc_boosting(X,Y,g,v,ite,thr)</h4>
+<p>Function to perform Kernel Boosting Input: X: A matrix with the explanatory variables. Y: a matrix with the variable to predict. g: a positive number with the width parameter for the RBF Kernel. v: a number between 0 and 1 that corresponds to the shrinkage parameter. ite: an integer with the number of iterations. Output f: a matrix with the estimates of Y. sse: the sum of squared errors.</p>
+</div>
+<div id="kboost" class="section level3">
+<h3>KBoost</h3>
+<p>kboost is a general function to infer gene regulatory networks from gene expression data. The gene expression data needs to be a nummerical matrix where the columns are the genes and the rows are the observations, patients or experiments. KBoost has a Bayesian formulation which allows the user to include prior knowledge. In biology this is commonly the case, particularly with well studied organisms. If the user knows of transcription factors that are well known to regulate certain genes, they can include this in a matrix P of size GxK, where G is the number of genes and K the number of transcription factors. Take for example the well-known TP53-MDM2 interaction. The user would need fist to build the matrix P and in the column that corresponds to TP53 and the row that corresponds to MDM2 type a number that represents the prior probability of this interaction. We recommend using values higher that 0.5 but lower than 1 to avod nummerical errors in these cases. On the other hand, for interactions where no prior knowledge is available, the user can simply se 0.5.</p>
+<div id="kboostxtfsprior_weightsgvite" class="section level4">
+<h4>KBoost(X,TFs,prior_weights,g,v,ite)</h4>
+<p>Input: X: an NxG matrix where N is the number of observations and G the no. of genes TFs: a vector of numerical indexes of the K genes in X that are TFs (default 1:G). prior_weights: a GxK matrix with the prior probabilities of each interaction (default is 0.5 for all values). g: a positive scalar that corresponds to the width parameter in the RBF Kernel (default 40). v: a positive scalar lower than 1 that is the shrinkage parameter for each boosting iteration (default 0.1). ite: an integer that represents the maximum number of iterations (default 3).</p>
+<p>Output: List with the following fields: GRN: A matrix with the gene regulatory network. GRN_UP: A matrix with the gene regulatory network before the heuristic step of multiplying each column by its variance. prior:The prior for the best model at each iteration. model: the transcription factors with the highest posteriors at each iteration per gene. prior_weights: a GxK matrix with the prior probabilities of each interaction (default is 0.5 for all values). g: a positive scalar that corresponds to the width parameter in the RBF Kernel (default 40). v: a positive scalar lower than 1 that is the shrinkage parameter for each boosting iteration (default 0.1). ite: an integer that represents the maximum number of iterations (default 3).</p>
+<p>Example with no Prior knowledge:</p>
+<pre><code>#Load KBoostv
+
+library(KBoostv)
+
+data(D4_multi_1)
+
+grn = kboost(D4_multi_1)</code></pre>
+<p>Example with Prior knowledge:</p>
+<pre><code>#Load KBoostv
+
+library(KBoostv)
+
+data(D4_multi_1)
+
+#for this example assume we know from previous experiments that TF2 regulates gene 91:
+
+prior_weights = matrix(0.5,100,100)
+
+prior_weights[91,2] = 0.7
+
+grn = kboost(X=D4_multi_1, prior_Weights = prior_weights)</code></pre>
+</div>
+<div id="kboost_human_symbolxgen_namesg-vitepos_weightneg_weight" class="section level4">
+<h4>KBoost_human_symbol(X,gen_names,g, v,ite,pos_weight,neg_weight)</h4>
+<p>Function to Infer Gene Regulatory Network from Human Cell Lines or patient samples.This function automatically builds a prior from Gerstein et al. 2012 and a list of TFs using from Lambert et al. 2018. The gene expression data needs to be a numerical matrix.This functions was built using gene Symbols.</p>
+<p>Inputs: Function to automatically build and run KBoost on data with human gene expression values and Symbol gene names. X: an NxG numeric matrix with the expression values of G genes and N obersvations. The gen_names can come as column names. gen_names: a set of SYMBOL gene names that correspond to the names of the columns of X. g: a positive scalar with the width parameter for the RBF kernel. (default g = 40) v: a number between 0 and 1 with the shrinkage parameter. (default v =0.1) ite: an integer with the number of iterations (default ite = 3)</p>
+<p>Output: List with the following fields: GRN: A matrix with the gene regulatory network. GRN_UP: A matrix with the gene regulatory network before the heuristic step of multiplying each column by its variance. prior:The prior for the best model at each iteration. model: the transcription factors with the highest posteriors at each iteration per gene. prior_weights: a GxK matrix with the prior probabilities of each interaction (default is 0.5 for all values). g: a positive scalar that corresponds to the width parameter in the RBF Kernel (default 40). v: a positive scalar lower than 1 that is the shrinkage parameter for each boosting iteration (default 0.1). ite: an integer that represents the maximum number of iterations (default 3).</p>
+</div>
+<div id="get_prior_gersteingen_namestfs-pos_weight-neg_weight" class="section level4">
+<h4>get_prior_Gerstein(gen_names,TFs, pos_weight, neg_weight)</h4>
+<p>Function to build a prior automatically using a previously built Network on ChIP-Seq from Gerstein et al. 2012. Input gen_names: the gene names of the G genes in the user’s subset in Symbol nomenclature. TFs: the indexes of the K genes in the user’s subset which are TFs. pos_weight: the prior weight for edges that were previously found in the Gerstein network. net_weight: the prior weight for edges that were not found in the Gerstein network. Output: prior_weights: a GxK matrix with prior weights that a TF regulates a gene given the network published by Gerstein et al. 2012.</p>
+<div id="net_dist_bingrntfsthr" class="section level5">
+<h5>net_dist_bin(GRN,TFs,thr)</h5>
+<p>Function to calculate the shortest distance between nodes. Input: GRN: An inferred networks with the predictive probabilities that a transcription factor regulates a gene. TFs: A vector with indexes of the rows of GRN which correspond to TFs. thr: A scalar between 0 and 1 that is used select the edges with large posterior probabilities. Output dist_mat: A matrix with the shortest distances between TFs (columns) and all genes (rows).</p>
+<p>Example:</p>
+<pre><code>library(KBoost)
+data(D4_multi_1)
+Net = KBoost(D4_multi_1)
+dist = net_dist_bin(Net$GRN,Net$TFs,0.1)</code></pre>
+</div>
+</div>
+<div id="net_summary_bin-functiongrntfsthrab" class="section level4">
+<h4>net_summary_bin = function(GRN,TFs,thr,a,b)</h4>
+<p>Function to summarize the GRN filtered with a threshold.</p>
+<p>Inputs:</p>
+<p>GRN: An inferred networks with the predictive probabilities that a transcription facor regulates a gene. TFs: A vector with indexes of the rows of GRN which correspond to TFs. thr: a scalar between 0 and 1, edges with posterior probabilities lower than thr will be discarded. a: a scalar for the Katz and PageRank centrality measures. Default the inverse of the largest eigenvalue of GRN. b: a scalar for the Katz and PageRank centrality measures. Default is 1.</p>
+<p>Output: List with the following fields: GRN_table: a sorted table version of the GRN. Outdegree : the outdegree of each TF. Indegree: the indegree of each gene.<br />
+Katz: A matrix with the Katz centrality measure per TF. Close_centr: A matrix with the closeness centrality measure per TF.</p>
+<p>Example:</p>
+<p>library(KBoost) data(D4_multi_1) Net = K_Boost_Basic(D4_multi_1) Net_Summary = net_summary_bin(Net$GRN)</p>
+</div>
+<div id="net_refinenet" class="section level4">
+<h4>net_refine(Net)</h4>
+<p>Function to do a heuristic post-processing suggested by Slawek and Arodz that improves accuracy. Each column is multiplied by its variance. Input Net: a GRN with TFs in the columns. Output Net: a refined GRN.</p>
+</div>
+<div id="write_grn_d4grntfs-filename" class="section level4">
+<h4>write_GRN_D4(GRN,TFs, filename)</h4>
+<p>Function to write output in DREAM4 Challenge Format. Input GRN: a GxK gene regulatory network. TFs: a K set of indixes of G that are TFs. filename: a string with the name of the file to store the GRN.</p>
+</div>
+</div>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<div id="dream-4-multifactorial-perturbation-challenge-datasets" class="section level3">
+<h3>DREAM 4 Multifactorial Perturbation Challenge Datasets</h3>
+<div id="d4_multi_1-d4_multi_2-d4_multi_3-d4_multi_4-and-d4_multi_5" class="section level4">
+<h4>D4_multi_1, D4_multi_2, D4_multi_3, D4_multi_4 and D4_multi_5</h4>
+<p>The gene expression datasets from the DREAM4 multifactorial perturbation challenge. <a href="https://www.synapse.org/#!Synapse:syn3049712/wiki/74628" class="uri">https://www.synapse.org/#!Synapse:syn3049712/wiki/74628</a> Marbach D, Prill RJ, Schaffter T, Mattiussi C, Floreano D, and Stolovitzky G. Revealing strengths and weaknesses of methods for gene network inference. PNAS, 107(14):6286-6291, 2010. Pubmed Example:</p>
+<pre><code>data(D4_multi_1)</code></pre>
+</div>
+<div id="g_d4_multi_1-g_d4_multi_2-g_d4_multi_3-g_d4_multi_4-and-g_d4_multi_5" class="section level4">
+<h4>G_D4_multi_1, G_D4_multi_2, G_D4_multi_3, G_D4_multi_4 and G_D4_multi_5</h4>
+<p>The gold standard networks from gene expression datasets from the DREAM4 multifactorial perturbation challenge. <a href="https://www.synapse.org/#!Synapse:syn3049712/wiki/74628" class="uri">https://www.synapse.org/#!Synapse:syn3049712/wiki/74628</a> Marbach D, Prill RJ, Schaffter T, Mattiussi C, Floreano D, and Stolovitzky G. Revealing strengths and weaknesses of methods for gene network inference. PNAS, 107(14):6286-6291, 2010. Pubmed Example:</p>
+<pre><code>data(G4_multi_1)</code></pre>
+</div>
+</div>
+<div id="gerstein_prior_enet_2" class="section level3">
+<h3>Gerstein_Prior_ENET_2</h3>
+<p>Gene Regulatory Network from the ChIPSeq Dataset Encode in Human Cell-Lines. A matrix with two columns The fist column is a transcription factor and the second is a gene. Gerstein, M.B., et al. Architecture of the human regulatory network derived from ENCODE data. Nature 2012;489(7414):91-100. Example:</p>
+<pre><code>data(Gerstein_Prior_ENET_2)</code></pre>
+</div>
+<div id="human_tfs" class="section level3">
+<h3>Human_TFs</h3>
+<p>Set of Genes that are Transcription Factors in Symbol nomenclature.</p>
+<p>Lambert, S.A., et al. The Human Transcription Factors. Cell 2018;172(4):650-665. Example:</p>
+<pre><code>data(Human_TFs)</code></pre>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
