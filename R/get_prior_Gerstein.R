@@ -7,7 +7,7 @@
 #'
 get_prior_Gerstein = function(gen_names, TFs, pos_weight, neg_weight){
   # We need to load the prior first.
-  P = KBoostv::Gerstein_Prior_ENET_2
+  P = KBoost::Gerstein_Prior_ENET_2
   # Great! Now, let's build the prior_weights matrix.
   prior_weights = matrix(neg_weight, length(gen_names), length(TFs))
   # Cool beans!!! Let's see if we find any previously found edges! These edges will have a higher prior probability.
