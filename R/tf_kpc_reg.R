@@ -14,8 +14,10 @@ tf_kpc_reg = function(X,TFs,g,v){
   for (j in seq_along(TFs)){
     # Get the RBF Kernel.
     k = RBF_K(X[,TFs[j]],g)
+    # Normalize the RBF Kernel.
+    k = kernel_normal(k)
     # Get the KPCs.
-    kpca[[j]] = KPC(k, 0.01)
+    kpca[[j]] = KPC(k, 1e-4)
     # Do the orthogonal regression. Exclude the Gene for the same TF. Autoregulation is not included here.
     res[[j]] = ort_reg(kpca[[j]],X[,-TFs[j]],v)
     llik[-TFs[j],j] = res[[j]]$llik
