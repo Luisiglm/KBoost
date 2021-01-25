@@ -23,7 +23,7 @@ Function to summarize the GRN filtered with a threshold,
 the function produces a table version of the GRN, outdegree and indegree centrality, Katz centrality and closeness centrality.
 }
 \examples{
-library(KBoostv)
+library(KBoost)
 data(D4_multi_1)
 Net = kboost(D4_multi_1)
 Net_Summary = net_summary_bin(Net$GRN)

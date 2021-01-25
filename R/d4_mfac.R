@@ -10,17 +10,17 @@ d4_mfac = function(v,g,ite, write_res){
   aurocs = matrix(0,5,1)
   auprs = matrix(0,5,1)
   # Run the data.
-  grn_1 = kboost(KBoostv::D4_multi_1,v = v,g = g, ite= ite)
-  grn_2 = kboost(KBoostv::D4_multi_2,v = v,g = g, ite= ite)
-  grn_3 = kboost(KBoostv::D4_multi_3,v = v,g = g, ite= ite)
-  grn_4 = kboost(KBoostv::D4_multi_4,v = v,g = g, ite= ite)
-  grn_5 = kboost(KBoostv::D4_multi_5,v = v,g = g, ite= ite)
+  grn_1 = kboost(KBoost::D4_multi_1,v = v,g = g, ite= ite)
+  grn_2 = kboost(KBoost::D4_multi_2,v = v,g = g, ite= ite)
+  grn_3 = kboost(KBoost::D4_multi_3,v = v,g = g, ite= ite)
+  grn_4 = kboost(KBoost::D4_multi_4,v = v,g = g, ite= ite)
+  grn_5 = kboost(KBoost::D4_multi_5,v = v,g = g, ite= ite)
   # Now format the gold standards.
-  g_mat1 = tab_2_matrix_D4(KBoostv::G_D4_multi_1,100)
-  g_mat2 = tab_2_matrix_D4(KBoostv::G_D4_multi_2,100)
-  g_mat3 = tab_2_matrix_D4(KBoostv::G_D4_multi_3,100)
-  g_mat4 = tab_2_matrix_D4(KBoostv::G_D4_multi_4,100)
-  g_mat5 = tab_2_matrix_D4(KBoostv::G_D4_multi_5,100)
+  g_mat1 = tab_2_matrix_D4(KBoost::G_D4_multi_1,100)
+  g_mat2 = tab_2_matrix_D4(KBoost::G_D4_multi_2,100)
+  g_mat3 = tab_2_matrix_D4(KBoost::G_D4_multi_3,100)
+  g_mat4 = tab_2_matrix_D4(KBoost::G_D4_multi_4,100)
+  g_mat5 = tab_2_matrix_D4(KBoost::G_D4_multi_5,100)
   # Now obtain the AUROCS and the AUPRS.
   a = AUPR_AUROC_matrix(grn_1$GRN,g_mat1,TRUE,1:100)
   aurocs[1] = a$AUROC

@@ -1,4 +1,4 @@
 library(testthat)
-library(KBoostv)
+library(KBoost)
 
-test_check("KBoostv")
+test_check("KBoost")
