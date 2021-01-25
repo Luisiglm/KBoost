@@ -7,7 +7,7 @@
 grid_search_kboost(dataset, vs, gs, ite)
 }
 \arguments{
-\item{dataset}{One of the three datasets in the package, 1 for IRMA, 2 for DREAM4 multifactorial and 3 for DREAM5.}
+\item{dataset}{One of the two datasets in the package, 1 for IRMA or 2 for DREAM4 multifactorial.}
 
 \item{vs}{The range of values of v. All values need to be between 0 and 1.}
 

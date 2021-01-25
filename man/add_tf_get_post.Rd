@@ -4,7 +4,7 @@
 \alias{add_tf_get_post}
 \title{Function to add a new tf to an existing model and calculate posteriors.}
 \usage{
-add_tf_get_post(priors, lliks, model, f, reg, kpca, TFs)
+add_tf_get_post(priors, lliks, model, f, reg, kpca, TFs, v)
 }
 \arguments{
 \item{priors}{a GxK numeric matrix with the log-priors of TF regulation models.}
@@ -17,9 +17,11 @@ add_tf_get_post(priors, lliks, model, f, reg, kpca, TFs)
 
 \item{reg}{a list produced from the ort_reg function.}
 
-\item{kpca}{a lits with the Kernel Principal Components.}
+\item{kpca}{a list with the Kernel Principal Components.}
 
 \item{TFs}{indexes of the genes in the system integers that are TFs.}
+
+\item{v}{the shrinkage parameter.}
 }
 \description{
 Function to add a new tf to an existing model and calculate posteriors.
