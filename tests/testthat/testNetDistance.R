@@ -1,4 +1,4 @@
-library(KBoostv)
+library(KBoost)
 
 # Check that the net distance function works.
 
@@ -6,7 +6,7 @@ library(KBoostv)
 test_that("The Distance between nodes is calculated correctly", {
 
   # Use the IRMA Net as an example
-  irma_net = KBoostv::IRMA_Gold
+  irma_net = KBoost::IRMA_Gold
   d = net_dist_bin(irma_net,1:5,0.1)
   # Write down manually calculated distance
   d_ = matrix(0,5,5)

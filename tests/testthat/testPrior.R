@@ -1,4 +1,4 @@
-library(KBoostv)
+library(KBoost)
 
 test_that("Prior works using a Input list of Symbols", {
 

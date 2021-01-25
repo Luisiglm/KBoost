@@ -1,4 +1,4 @@
-Package: KBoostv
+Package: KBoost
 Type: Package
 Title: Inference of gene regulatory networks from gene expression data 
 Version: 0.1.0

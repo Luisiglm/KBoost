@@ -1,4 +1,4 @@
-library(KBoostv)
+library(KBoost)
 
 # Check that the net summarzing function works.
 
@@ -6,7 +6,7 @@ library(KBoostv)
 test_that("The Outdegree and Indegree is calculated correctly in IRMA Net", {
 
   # Use the IRMA Net as an example
-  irma_net = KBoostv::IRMA_Gold
+  irma_net = KBoost::IRMA_Gold
   s_n = net_summary_bin(irma_net)
   # Write down manually calculated Outdegree and Indegree
   o_ = c(1,1,3,1,0)
