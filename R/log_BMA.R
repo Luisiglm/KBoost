@@ -11,29 +11,39 @@ log_BMA = function(posterior_list, model_list, G,K,ite){
   # Pre-allocate memory for the GRN. this is the output.
   bma = matrix(0,G,K)
   # we are going to access the elements of a each list. Then concatenate them in a matrix.
+
   for (i in 1:length(posterior_list)){
     if (i ==1){
       post = posterior_list[[i]]
     } else {
-      post = cbind(post,posterior_list[[i]])
+      tempo = cbind(post,posterior_list[[i]])
+      post = tempo
+      # we will clear tempo because it is no longer used.
+      rm(tempo)
     }
 
   }
+
   # cool beans.
   # We will do bma per gene.
+
   for (i in 1:G){
     # we will remove the -infinity values cause they can cause numeric problems. They're value is zero in natural space they don't affect the sum.
     idx_inf = is.infinite(post[i,])
     p = post[i,!(idx_inf)]
-    # access the log posteriors and repeat them into a matrix.
-    p = matrix(p, length(p), length(p))
-    # take the differences.
-    p = p - t(p)
-    # a difference in log space is a division in natural space.
-    p = exp(p)
-    # now let's average!
-    p = colSums(p)
-    p = p^-1
+    # No we have all the log-posteriors. We can do some tricks to add them in this form.
+    # It is much faster to use the exponential though. However there is a chance that it will be a number under the
+    # precision of the computer. We will multiply them by a constant, c, that will garantee this will not happen.
+    # we will use 1e-30 as an arbitrary threshold.
+    if (min(p)<log(1e-30)){
+      c = log(1e-30) - min(p)
+    } else {
+      c = 0
+    }
+    # We get the exponential of the log posteriors.
+    p = exp(c + p)
+    # And we can get the sum.
+    p = p/sum(p)
     # Make a new variable p_ with zeros.
     p_ = matrix(0,dim(post)[2],1)
     p_[!idx_inf] = p
