@@ -24,3 +24,9 @@ KBoost_human_symbol(X, gen_names, g, v, ite, pos_weight, neg_weight)
 \description{
 Function to automatically build and run KBoost on data with human gene expression values and Symbol gene names.
 }
+\examples{
+X = rnorm(50,0,1)
+X = matrix(X,10,5)
+gen_names = c("TP53","YY1","CTCF","MDM2","ESR1")
+grn = KBoost_human_symbol(X,gen_names,pos_weight = 0.6, neg_weight =0.4)
+}

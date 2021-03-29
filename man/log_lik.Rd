@@ -11,6 +11,9 @@ log_lik(Y, F)
 
 \item{F}{an NxG numeric matrix with the predicted expression values of G genes and N observations.}
 }
+\value{
+the log marginal likelihood.
+}
 \description{
 Function to calculate the Log-Marginal Likelihood of a Function of the Kernel PC regression model.
 }

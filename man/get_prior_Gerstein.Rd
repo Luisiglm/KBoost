@@ -15,6 +15,15 @@ get_prior_Gerstein(gen_names, TFs, pos_weight, neg_weight)
 
 \item{neg_weight}{the prior weight for edges that were not found in the Gerstein network.}
 }
+\value{
+matrix with prior probabilities of the Tf target edges.
+}
 \description{
 Function to build a prior automatically using a previously built Network on ChIP-Seq.
+}
+\examples{
+gen_names = c("TP53","MDM2","FOXM1","ESR1","CTCF","YY1")
+tfs = get_tfs_human(gen_names)
+prior = get_prior_Gerstein(gen_names,tfs,0.6,0.4)
+
 }

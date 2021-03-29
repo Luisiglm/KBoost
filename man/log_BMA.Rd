@@ -17,6 +17,9 @@ log_BMA(posterior_list, model_list, G, K, ite)
 
 \item{ite}{the number of iterations.}
 }
+\value{
+the Byesian model averaging result.
+}
 \description{
 Function to perform Bayesian Model Averaging with log un-normalized posteriors.
 }

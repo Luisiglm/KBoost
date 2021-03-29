@@ -13,6 +13,13 @@ irma_check(v, g, ite)
 
 \item{ite}{an integer with number of iterations.}
 }
+\value{
+list with aurocs and auprs for IRMA datasets
+}
 \description{
 Function to produce the AUPR and AUROC Results on the DREAM4 Multifactorial Challenge.
+}
+\examples{
+res = irma_check()
+
 }

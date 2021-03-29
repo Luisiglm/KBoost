@@ -19,6 +19,14 @@ kboost(X, TFs, g, v, prior_weights, ite)
 
 \item{ite}{an integer with the number of iterations (default ite = 3)}
 }
+\value{
+results for kboots.
+}
 \description{
 A function to run KBoost.
+}
+\examples{
+data(D4_multi_1)
+Net = kboost(D4_multi_1)
+
 }

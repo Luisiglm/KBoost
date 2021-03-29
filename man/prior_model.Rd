@@ -13,6 +13,9 @@ prior_model(prior_weights, model, prior)
 
 \item{prior}{a Gx1 numeric matrix with the prior probability of the current model.}
 }
+\value{
+prior probability of a model
+}
 \description{
 Function to calculate the log prior of a model given our assumptions.
 }

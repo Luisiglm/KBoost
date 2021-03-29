@@ -13,6 +13,9 @@ ort_reg(X, Y, v)
 
 \item{v}{a number between 0 and 1 it corresponds to the shrinkage parameter.}
 }
+\value{
+coefficients and log marginal likelihoods.
+}
 \description{
 Function to calculate a regression when regressors are orthogonal and have norm 1.
 }

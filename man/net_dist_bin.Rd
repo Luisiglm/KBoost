@@ -17,7 +17,6 @@ net_dist_bin(GRN, TFs, thr)
 Function to calculate the distance between nodes.
 }
 \examples{
-library(KBoost)
 data(D4_multi_1)
 Net = kboost(D4_multi_1)
 dist = net_dist_bin(Net$GRN,Net$TFs,0.1)

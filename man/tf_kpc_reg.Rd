@@ -15,6 +15,9 @@ tf_kpc_reg(X, TFs, g, v)
 
 \item{v}{a double between 0 and 1 with the shrinkage parameter.}
 }
+\value{
+the first iteration of Kernel pca boosting regression.
+}
 \description{
 Function to perform a univariate RBF KPC regression per TF in X.
 }

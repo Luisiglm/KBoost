@@ -15,6 +15,13 @@ d4_mfac(v, g, ite, write_res)
 
 \item{write_res}{a binary to indicate if the tables should be written.}
 }
+\value{
+list with auroc and auprs of the DREAM4 multifactorial challenge.
+}
 \description{
 Function to produce the AUPR and AUROC Results on the DREAM4 Multifactorial Challenge.
+}
+\examples{
+res = d4_mfac()
+
 }

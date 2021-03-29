@@ -15,6 +15,13 @@ grid_search_kboost(dataset, vs, gs, ite)
 
 \item{ite}{An integer that is the number of iterations.Left fixed in this case.}
 }
+\value{
+list with auprs and aurocs of different values of vs and gs and ite.
+}
 \description{
 Function to perform a grid search and find the hyperparameters.
+}
+\examples{
+res = grid_search_kboost(1,c(0.1,0.5,1),c(1,10,60,100),3)
+
 }

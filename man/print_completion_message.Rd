@@ -6,6 +6,9 @@
 \usage{
 print_completion_message()
 }
+\value{
+None
+}
 \description{
 Function to write a random completion message.
 }

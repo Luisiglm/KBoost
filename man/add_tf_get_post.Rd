@@ -23,6 +23,9 @@ add_tf_get_post(priors, lliks, model, f, reg, kpca, TFs, v)
 
 \item{v}{the shrinkage parameter.}
 }
+\value{
+list with posterior and tf to add in the next iteration.
+}
 \description{
 Function to add a new tf to an existing model and calculate posteriors.
 }

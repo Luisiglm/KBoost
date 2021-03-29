@@ -17,6 +17,9 @@ greedy_uni_boosting(f, X, TFs, kpca, v)
 
 \item{v}{a double between 0 and 1 that corresponds to the shrinkage parameter.}
 }
+\value{
+list with log likelihoods and residuals
+}
 \description{
 Function to perform boosting iterations in KBoost.
 }

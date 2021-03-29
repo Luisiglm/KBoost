@@ -19,6 +19,9 @@ kernel_pc_boosting(X, Y, g, v, ite, thr)
 
 \item{thr}{a threshold to discard Kernel principal components whose eigenvalue}
 }
+\value{
+function an sum of squared errors.
+}
 \description{
 Function to perform Kernel Principal Component Boosting
 }

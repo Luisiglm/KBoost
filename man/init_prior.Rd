@@ -9,6 +9,9 @@ init_prior(prior_weights)
 \arguments{
 \item{prior_weights}{an GxK numeric matrix with the prior probability of a TF in our set to regulate a gene.}
 }
+\value{
+matrix with prior weights for edges.
+}
 \description{
 Function to initialize the log prior of a model given our assumptions.
 }

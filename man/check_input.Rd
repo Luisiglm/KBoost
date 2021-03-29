@@ -19,6 +19,9 @@ check_input(X, TFs, g, v, prior_weights, ite)
 
 \item{ite}{an integer with the number of iterations (default ite = 3)}
 }
+\value{
+list with input revised and default values added
+}
 \description{
 A function to format a check that the user input to KBoost is correct.
 }

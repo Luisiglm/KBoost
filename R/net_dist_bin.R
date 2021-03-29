@@ -3,7 +3,7 @@
 #' @param GRN An inferred networks with the predictive probabilities that a transcription factor regulates a gene.
 #' @param TFs A vector with indexes of the rows of GRN which correspond to TFs.
 #' @param thr A scalar between 0 and 1 that is used select the edges with large posterior probabilities.
-#'
+#' @return a matrix with the distances between edges.
 #' @examples
 #' data(D4_multi_1)
 #' Net = kboost(D4_multi_1)

@@ -19,6 +19,9 @@ kboost_main(X, TFs, g, v, prior_weights, ite)
 
 \item{ite}{an integer with the number of iterations (default ite = 3)}
 }
+\value{
+list with Kboost results.
+}
 \description{
 Function to perform a univariate RBF KPC regression per TF in X.
 }

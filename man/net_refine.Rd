@@ -9,6 +9,9 @@ net_refine(Net)
 \arguments{
 \item{Net}{a GRN with TFs in the columns.}
 }
+\value{
+the network with Slavek and Arodz heuristic
+}
 \description{
 Function to do a heuristic post-processing that improves accuracy. Each column is multiplied by its variance.
 }

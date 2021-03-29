@@ -18,12 +18,14 @@ net_summary_bin(GRN, TFs, thr, a, b)
 
 \item{b}{a scalar for the Katz and PageRank centrality measures. Default is 1.}
 }
+\value{
+a list with the network analysed.
+}
 \description{
 Function to summarize the GRN filtered with a threshold,
 the function produces a table version of the GRN, outdegree and indegree centrality, Katz centrality and closeness centrality.
 }
 \examples{
-library(KBoost)
 data(D4_multi_1)
 Net = kboost(D4_multi_1)
 Net_Summary = net_summary_bin(Net$GRN)

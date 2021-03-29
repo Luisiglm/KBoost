@@ -9,6 +9,9 @@ kernel_normal(K)
 \arguments{
 \item{K}{an NxN numeric matrix with the kernel function with N observations.}
 }
+\value{
+feature centred kernel.
+}
 \description{
 A function to perform feature normalization in kernel space.
 }

@@ -11,6 +11,9 @@ RBF_K(x, g)
 
 \item{g}{a positive scalar with the width parameter.}
 }
+\value{
+the matrix with the RBF kernel
+}
 \description{
 Function to calculate the RBF Kernel of a matrix X with width g.
 }

@@ -7,7 +7,7 @@
 #' @param pos_weight a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was observed before.
 #' @param neg_weight a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was NOT observed before.
 #' @export
-#' return list with results of KBoost on a dataset with Symbol gene names.
+#' @return list with results of KBoost on a dataset with Symbol gene names.
 #' @examples
 #' X = rnorm(50,0,1)
 #' X = matrix(X,10,5)
