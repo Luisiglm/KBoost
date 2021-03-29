@@ -1,6 +1,6 @@
 Package: KBoost
 Type: Package
-Title: Inference of gene regulatory networks from gene expression data 
+Title: Inference of gene regulatory networks from gene expression data
 Version: 0.1.0
 Authors@R: c(
     person(given = "Luis F.",
@@ -14,13 +14,15 @@ Authors@R: c(
     person(given = "Walter",
            family = "Kolch",
            role = "aut"))
-Description: Package to infer gene regulatory networks from gene expression data. This package uses kernel principal component regression, boosting and Bayesian model averaging to infer gene regualtory networks. 
+Description: Package to infer gene regulatory networks from gene expression data. This package uses kernel principal component regression, boosting and Bayesian model averaging to infer gene regualtory networks.
 Depends: R (>= 3.5.0), stats, utils
 License: LGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Suggests: 
+URL: https://github.com/Luisiglm/KBoost
+biocViews: Network, GraphAndNetwork, Bayesian, NetworkInference, GeneRegulation, Transcriptomics, SystemsBiology, Transcription, GeneExpression, Regression, PrincipalComponent
+Suggests:
     knitr,
     rmarkdown,
     testthat
