@@ -15,7 +15,7 @@ Authors@R: c(
            family = "Kolch",
            role = "aut"))
 Description: Package to infer gene regulatory networks from gene expression data. This package uses kernel principal component regression, boosting and Bayesian model averaging to infer gene regualtory networks.
-Depends: R (>= 3.5.0), stats, utils
+Depends: R (>= 4.0), stats, utils
 License: LGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
