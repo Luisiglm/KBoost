@@ -4,7 +4,7 @@
 #' @param Y an NxG numeric matrix with the expression values of G genes and N obersvations.
 #' @param v a number between 0 and 1 it corresponds to the shrinkage parameter.
 #' @export
-#'
+#' @return coefficients and log marginal likelihoods.
 ort_reg = function(X,Y,v){
   # Y = X%*%b .
   # here t(X)%*%X = diag(T) (T is the number of columns of X). % denotes matrix multiplication in R.

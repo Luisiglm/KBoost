@@ -1,6 +1,7 @@
 #' Function to do a heuristic post-processing that improves accuracy. Each column is multiplied by its variance.
 #'@param Net a GRN with TFs in the columns.
 #'@export
+#'@return the network with Slavek and Arodz heuristic
 
 net_refine = function(Net){
 

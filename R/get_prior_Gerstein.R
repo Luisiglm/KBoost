@@ -4,6 +4,11 @@
 #'@param pos_weight the prior weight for edges that were previously found in the Gerstein network.
 #'@param neg_weight the prior weight for edges that were not found in the Gerstein network.
 #'@export
+#'@return matrix with prior probabilities of the Tf target edges.
+#'@examples
+#' gen_names = c("TP53","MDM2","FOXM1","ESR1","CTCF","YY1")
+#' tfs = get_tfs_human(gen_names)
+#' prior = get_prior_Gerstein(gen_names,tfs,0.6,0.4)
 #'
 get_prior_Gerstein = function(gen_names, TFs, pos_weight, neg_weight){
   # We need to load the prior first.

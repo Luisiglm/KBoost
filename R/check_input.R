@@ -7,6 +7,7 @@
 #' @param prior_weights a GxK matrix with the prior weights for the prior probability that a TF regulates a gene.(default 0.5 for all values)
 #' @param ite an integer with the number of iterations (default ite = 3)
 #' @export
+#' @return list with input revised and default values added
 #'
 check_input = function(X,TFs,g,v,prior_weights,ite){
   ## Check Input and
@@ -148,5 +149,3 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
   return(list(X = X, TFs= TFs, g =g, v =v, prior_weights = prior_weights, ite = ite))
 
 }
-
-

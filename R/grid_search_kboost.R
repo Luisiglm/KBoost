@@ -4,6 +4,9 @@
 #' @param gs The range of values of g. All values need to be larger than 0.
 #' @param ite An integer that is the number of iterations.Left fixed in this case.
 #' @export
+#' @return list with auprs and aurocs of different values of vs and gs and ite.
+#' @examples
+#' res = grid_search_kboost(1,c(0.1,0.5,1),c(1,10,60,100),3)
 #'
 grid_search_kboost = function(dataset, vs, gs , ite){
   # Pre-allocate memory to store AUROCs and AUPRs.

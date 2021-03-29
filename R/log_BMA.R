@@ -6,7 +6,8 @@
 #' @param K the number of TFs.
 #' @param ite the number of iterations.
 #' @export
-#
+#' @return the Byesian model averaging result.
+#'
 log_BMA = function(posterior_list, model_list, G,K,ite){
   # Pre-allocate memory for the GRN. this is the output.
   bma = matrix(0,G,K)

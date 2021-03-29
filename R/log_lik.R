@@ -3,6 +3,7 @@
 #' @param Y an NxG numeric matrix with the expression values of G genes and N observations.
 #' @param F an NxG numeric matrix with the predicted expression values of G genes and N observations.
 #' @export
+#' @return the log marginal likelihood.
 #'
 log_lik= function(Y,F){
 

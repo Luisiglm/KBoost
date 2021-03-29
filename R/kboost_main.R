@@ -7,6 +7,7 @@
 #' @param prior_weights a GxK matrix with the prior weights for the prior probability that a TF regulates a gene.(default 0.5 for all values)
 #' @param ite an integer with the number of iterations (default ite = 3)
 #' @export
+#' @return list with Kboost results.
 #'
 kboost_main = function(X,TFs,g,v,prior_weights,ite){
   # do first part of the algorithm.

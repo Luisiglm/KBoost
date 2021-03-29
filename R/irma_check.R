@@ -3,6 +3,9 @@
 #' @param v a number between 0 and 1 that is the shrinkage parameter
 #' @param ite an integer with number of iterations.
 #' @export
+#' @return list with aurocs and auprs for IRMA datasets
+#' @examples
+#' res = irma_check()
 #'
 irma_check = function(v,g,ite){
   # Pre-allocate memory for the results.

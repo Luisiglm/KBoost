@@ -9,6 +9,7 @@
 #' @param TFs indexes of the genes in the system integers that are TFs.
 #' @param v the shrinkage parameter.
 #' @export
+#' @return list with posterior and tf to add in the next iteration.
 #'
 add_tf_get_post = function(priors,lliks,model,f,reg, kpca, TFs,v){
   # For each gene will select the new TF with the highest posterior.
@@ -39,4 +40,3 @@ add_tf_get_post = function(priors,lliks,model,f,reg, kpca, TFs,v){
   }
   return(list(model = model,posteriors = posteriors, prior_best = prior_best, f = f))
 }
-

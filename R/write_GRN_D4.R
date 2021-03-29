@@ -3,7 +3,11 @@
 #' @param TFs a K set of indixes of G that are TFs.
 #' @param filename a string with the filename.
 #' @export
-#'
+#' @return a file with the network written as a file.
+#' @examples
+#' data(D4_multi_1)
+#' Net = Kboost(D4_multi_1)
+#' write_GRN_D4(Net$GRN, 1:100, "D4_multi_1_network.txt")
 write_GRN_D4 = function(GRN,TFs, filename){
   G = dim(GRN)[1]
   K = dim(GRN)[2]

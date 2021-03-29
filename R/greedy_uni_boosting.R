@@ -6,7 +6,7 @@
 #' @param v a double between 0 and 1 that corresponds to the shrinkage parameter.
 #' @param TFs a matrix with integers with the columns of X that are TFs.
 #' @export
-#
+#' @return list with log likelihoods and residuals
 greedy_uni_boosting = function(f, X, TFs, kpca,v){
   # Calculate pseudo-residuals.
   pse = X-f

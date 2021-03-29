@@ -3,7 +3,7 @@
 #' @param x an Nx1 numeric matrix with N observations.
 #' @param g a positive scalar with the width parameter.
 #' @export
-#'
+#' @return the matrix with the RBF kernel
 RBF_K = function(x,g){
 
   # formula K(i,j) = exp(-Euc[i,j]/g), Euc is the Squared Euclidean distance.

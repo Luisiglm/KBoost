@@ -4,6 +4,9 @@
 #' @param ite an integer with number of iterations.
 #' @param write_res a binary to indicate if the tables should be written.
 #' @export
+#' @return list with auroc and auprs of the DREAM4 multifactorial challenge.
+#' @examples
+#' res = d4_mfac()
 #'
 d4_mfac = function(v,g,ite, write_res){
   # Pre-allocate memory for the results.

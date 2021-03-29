@@ -7,6 +7,10 @@
 #' @param prior_weights it can be a scalar or a GxK matrix with the prior weights for the prior probability that a TF regulates a gene.(default 0.5 for all values)
 #' @param ite an integer with the number of iterations (default ite = 3)
 #' @export
+#' @return results for kboots.
+#' @examples
+#' data(D4_multi_1)
+#' Net = kboost(D4_multi_1)
 #'
 kboost = function(X,TFs,g,v,prior_weights,ite){
   # First we will check the input and make sure everything is in the right form.

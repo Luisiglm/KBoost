@@ -3,6 +3,7 @@
 #' @param K an NxN numeric matrix with the Kernel matrix.
 #' @param thr a positive scalar which is a threshold to discard eigen-vectors based on eigen-values.
 #' @export
+#' @return the kernel principal components
 #'
 KPC = function(K,thr){
   # Perform the eigen decomposition.

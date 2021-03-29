@@ -1,6 +1,6 @@
 #' Function to write a random completion message.
 #' @export
-#'
+#' @return None
 print_completion_message = function(){
   # We have a list with ten random completion messages.
   messages = list()

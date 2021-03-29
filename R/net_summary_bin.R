@@ -7,13 +7,13 @@
 #' @param b a scalar for the Katz and PageRank centrality measures. Default is 1.
 #'
 #' @examples
-#' library(KBoost)
 #' data(D4_multi_1)
 #' Net = kboost(D4_multi_1)
 #' Net_Summary = net_summary_bin(Net$GRN)
 #'
 #' @export
-
+#' @return a list with the network analysed.
+#'
 net_summary_bin = function(GRN,TFs,thr,a,b){
 
   if (class(GRN)[1]!="matrix"){

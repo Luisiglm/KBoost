@@ -2,7 +2,7 @@
 #'
 #' @param prior_weights an GxK numeric matrix with the prior probability of a TF in our set to regulate a gene.
 #' @export
-#'
+#' @return matrix with prior weights for edges.
 init_prior = function(prior_weights){
   # if Prior has 1 values it is better they are removed as it will yield sets of models with -Inf probabilities.
   # we will return p_o and Model as a standard all False binary matrix.

@@ -5,7 +5,7 @@
 #' @param g a positive scalar with the width parameter for the RBF kernel.
 #' @param v a double between 0 and 1 with the shrinkage parameter.
 #' @export
-#'
+#' @return the first iteration of Kernel pca boosting regression.
 tf_kpc_reg = function(X,TFs,g,v){
   # Create a list to store the values of the KPC.
   kpca = list()

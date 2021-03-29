@@ -6,7 +6,8 @@
 #' @param ite an integer with the number of iterations.
 #' @param thr a threshold to discard Kernel principal components whose eigenvalue
 #' @export
-#'
+#' @return function an sum of squared errors.
+#' 
 kernel_pc_boosting = function(X,Y,g,v,ite,thr){
   # First we will calculate the RBF kernel and the Kernel Principal Components.
   kpca = list()

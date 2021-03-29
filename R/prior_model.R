@@ -4,7 +4,7 @@
 #' @param model an GxK binary matrix with values of True and False if a TF was added to a model.
 #' @param prior a Gx1 numeric matrix with the prior probability of the current model.
 #' @export
-#'
+#' @return prior probability of a model
 prior_model = function(prior_weights, model, prior){
   # At the start of each boosting iteration we will calculate the new model priors.
   G = dim(prior_weights)[1]

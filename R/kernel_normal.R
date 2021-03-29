@@ -2,7 +2,7 @@
 #'
 #' @param K an NxN numeric matrix with the kernel function with N observations.
 #' @export
-#'
+#' @return feature centred kernel.
 kernel_normal = function(K){
   # We first need to perform the row sum
   K_term2 = matrix(rowSums(K),dim(K)[1],dim(K)[1])

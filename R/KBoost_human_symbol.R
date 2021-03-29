@@ -7,6 +7,12 @@
 #' @param pos_weight a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was observed before.
 #' @param neg_weight a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was NOT observed before.
 #' @export
+#' return list with results of KBoost on a dataset with Symbol gene names.
+#' @examples
+#' X = rnorm(50,0,1)
+#' X = matrix(X,10,5)
+#' gen_names = c("TP53","YY1","CTCF","MDM2","ESR1")
+#' grn = KBoost_human_symbol(X,gen_names,pos_weight = 0.6, neg_weight =0.4)
 KBoost_human_symbol = function(X,gen_names,g, v,ite,pos_weight,neg_weight){
   # check the input making sure that:
   # 1) the input has gene names.
@@ -42,5 +48,6 @@ KBoost_human_symbol = function(X,gen_names,g, v,ite,pos_weight,neg_weight){
   }
   prior_weights = get_prior_Gerstein(gen_names,TFs,pos_weight,neg_weight)
   grn = kboost(X,TFs,g,v,prior_weights,ite)
+  grn = add_names(grn,gen_names)
   return(grn)
 }

@@ -1,6 +1,10 @@
 #' Function to automatically assign Human TFs given a list of Symbols.
 #'@param gen_names a vector or matrix with the Symbol Gene Names of the system to be analysed.
 #'@export
+#'@return indexes of gen_names who are TFs.
+#'@examples
+#' gen_names = c("TP53","MDM2","FOXM1","ESR1","CTCF")
+#' tfs = get_tfs_human(gen_names)
 #'
 get_tfs_human = function(gen_names){
   # Load TFs data.
