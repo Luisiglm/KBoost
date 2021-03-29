@@ -21,6 +21,9 @@ KBoost_human_symbol(X, gen_names, g, v, ite, pos_weight, neg_weight)
 
 \item{neg_weight}{a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was NOT observed before.}
 }
+\value{
+list with results of KBoost on a dataset with Symbol gene names.
+}
 \description{
 Function to automatically build and run KBoost on data with human gene expression values and Symbol gene names.
 }

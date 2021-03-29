@@ -13,6 +13,9 @@ net_dist_bin(GRN, TFs, thr)
 
 \item{thr}{A scalar between 0 and 1 that is used select the edges with large posterior probabilities.}
 }
+\value{
+a matrix with the distances between edges.
+}
 \description{
 Function to calculate the distance between nodes.
 }
