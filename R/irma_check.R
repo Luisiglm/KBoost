@@ -17,10 +17,10 @@ irma_check = function(v,g,ite){
   # Read the gold standard.
   g_mat = KBoost::IRMA_Gold
   # Now obtain the AUROCS and the AUPRS.
-  a = AUPR_AUROC_matrix(grn_on$GRN,g_mat,FALSE,1:5)
+  a = AUPR_AUROC_matrix(grn_on$GRN,g_mat,FALSE,seq_len(5))
   aurocs[1] = a$AUROC
   auprs[1] = a$AUPR
-  a = AUPR_AUROC_matrix(grn_off$GRN,g_mat,FALSE,1:5)
+  a = AUPR_AUROC_matrix(grn_off$GRN,g_mat,FALSE,seq_len(5))
   aurocs[2] = a$AUROC
   auprs[2] = a$AUPR
   return(list(aurocs = aurocs, auprs= auprs))
