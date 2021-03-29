@@ -27,5 +27,5 @@ Function to calculate the AUROC and AUPR of a known network.This function was ma
 data(D4_multi_1)
 Net = kboost(D4_multi_1)
 g_mat1 = tab_2_matrix_D4(KBoost::G_D4_multi_1,100)
-aupr_auroc = AUPR_AUROC_matrix(Net$GRN,g_mat1,auto_remove = TRUE, 1:100)
+aupr_auroc = AUPR_AUROC_matrix(Net$GRN,g_mat1,auto_remove = TRUE,  seq_len(100))
 }

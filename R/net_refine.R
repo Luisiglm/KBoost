@@ -9,7 +9,7 @@
 
 net_refine = function(Net){
 
-    for (i in 1:dim(Net)[2]){
+    for (i in seq_len(dim(Net)[2])){
 
       Net[,i] = Net[,i]*stats::var(Net[,i])
 

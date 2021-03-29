@@ -21,13 +21,13 @@ grid_search_kboost = function(dataset, vs, gs , ite){
   # We will generate colnames and rownames for clarity.
   r_n = matrix("g=",length(gs),1)
   c_n = matrix("v=", length(vs),1)
-  for (i in 1:length(gs)){
+  for (i in seq_len(length(gs))){
     r_n[i] = paste(r_n[i], toString(gs[i]), sep = "")
   }
-  for (j in 1:length(vs)){
+  for (j in seq_len(length(vs))){
     c_n[j] = paste(c_n[j], toString(vs[j]), sep = "")
   }
-  for (i in 1:d_size){
+  for (i in seq_len(d_size)){
     # allocate memory.
     aurocs[[i]] = matrix(0,length(gs),length(vs))
     colnames(aurocs[[i]]) = c_n
@@ -37,9 +37,9 @@ grid_search_kboost = function(dataset, vs, gs , ite){
     rownames(auprs[[i]]) = r_n
   }
   # Loop around the range of vs.
-  for (i in 1:length(gs)){
+  for (i in seq_len(length(gs))){
     #Loop around the range of gs.
-    for (j in 1:length(vs)){
+    for (j in seq_len(length(vs))){
       # Check what dataset was indicated.
       if (dataset ==2){
         res = d4_mfac(v = vs[j],g = gs[i], ite = ite)
@@ -47,7 +47,7 @@ grid_search_kboost = function(dataset, vs, gs , ite){
         res = irma_check(v = vs[j], g = gs[i], ite = ite)
       }
       # Store the results.
-      for (p in 1:length(aurocs)){
+      for (p in seq_len(length(aurocs))){
         aurocs[[p]][i,j] = res$aurocs[p]
         auprs[[p]][i,j] = res$auprs[p]
       }

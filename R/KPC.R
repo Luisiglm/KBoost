@@ -18,7 +18,7 @@ KPC = function(K,thr){
   if (sum(Pass) > 0){
       KPC = K%*%Re(Ei$vectors[,Pass])
        # Set their euclidean norm to one.
-      for (i in 1:(dim(KPC)[2])){
+      for (i in seq_len(dim(KPC)[2])){
       KPC[,i] = KPC[,i] / sum(KPC[,i]^2)^(1/2)
       }
       return(KPC)

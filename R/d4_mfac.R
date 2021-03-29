@@ -25,19 +25,19 @@ d4_mfac = function(v,g,ite, write_res){
   g_mat4 = tab_2_matrix_D4(KBoost::G_D4_multi_4,100)
   g_mat5 = tab_2_matrix_D4(KBoost::G_D4_multi_5,100)
   # Now obtain the AUROCS and the AUPRS.
-  a = AUPR_AUROC_matrix(grn_1$GRN,g_mat1,TRUE,1:100)
+  a = AUPR_AUROC_matrix(grn_1$GRN,g_mat1,TRUE,seq_len(100))
   aurocs[1] = a$AUROC
   auprs[1] = a$AUPR
-  a = AUPR_AUROC_matrix(grn_2$GRN,g_mat2,TRUE,1:100)
+  a = AUPR_AUROC_matrix(grn_2$GRN,g_mat2,TRUE,seq_len(100))
   aurocs[2] = a$AUROC
   auprs[2] = a$AUPR
-  a = AUPR_AUROC_matrix(grn_3$GRN,g_mat3,TRUE,1:100)
+  a = AUPR_AUROC_matrix(grn_3$GRN,g_mat3,TRUE,seq_len(100))
   aurocs[3] = a$AUROC
   auprs[3] = a$AUPR
-  a = AUPR_AUROC_matrix(grn_4$GRN,g_mat4,TRUE,1:100)
+  a = AUPR_AUROC_matrix(grn_4$GRN,g_mat4,TRUE,seq_len(100))
   aurocs[4] = a$AUROC
   auprs[4] = a$AUPR
-  a = AUPR_AUROC_matrix(grn_5$GRN,g_mat5,TRUE,1:100)
+  a = AUPR_AUROC_matrix(grn_5$GRN,g_mat5,TRUE,seq_len(100))
   aurocs[5] = a$AUROC
   auprs[5] = a$AUPR
   if (missing(write_res)){
@@ -45,11 +45,11 @@ d4_mfac = function(v,g,ite, write_res){
   }
   if (write_res){
     file_ = "KBoost_D4_"
-    write_GRN_D4(grn_1$GRN,TFs = 1:100, filename= paste(file_, "_1.txt", sep = ""))
-    write_GRN_D4(grn_2$GRN,TFs = 1:100, filename =paste(file_, "_2.txt", sep = ""))
-    write_GRN_D4(grn_3$GRN,TFs = 1:100, filename = paste(file_, "_3.txt", sep = ""))
-    write_GRN_D4(grn_4$GRN,TFs = 1:100, filename =paste(file_, "_4.txt", sep = ""))
-    write_GRN_D4(grn_5$GRN,TFs = 1:100, filename =  paste(file_, "_5.txt", sep = ""))
+    write_GRN_D4(grn_1$GRN,TFs = seq_len(100), filename= paste(file_, "_1.txt", sep = ""))
+    write_GRN_D4(grn_2$GRN,TFs =  seq_len(100), filename =paste(file_, "_2.txt", sep = ""))
+    write_GRN_D4(grn_3$GRN,TFs =  seq_len(100), filename = paste(file_, "_3.txt", sep = ""))
+    write_GRN_D4(grn_4$GRN,TFs =  seq_len(100), filename =paste(file_, "_4.txt", sep = ""))
+    write_GRN_D4(grn_5$GRN,TFs =  seq_len(100), filename =  paste(file_, "_5.txt", sep = ""))
   }
   return(list(aurocs = aurocs, auprs= auprs))
 }

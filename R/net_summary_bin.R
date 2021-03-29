@@ -30,7 +30,7 @@ net_summary_bin = function(GRN,TFs,thr,a,b){
   }
 
   if (missing(TFs)){
-    TFs = 1:dim(GRN)[2]
+    TFs = seq_len(dim(GRN)[2])
   }
 
   if (missing(thr)){
@@ -48,7 +48,7 @@ net_summary_bin = function(GRN,TFs,thr,a,b){
 
     gene_names = matrix("G",dim(GRN)[1],1)
 
-    for (i in 1:dim(GRN)[1]){
+    for (i in seq_len(dim(GRN)[1])){
 
       gene_names[i] = paste("G",toString(i), sep = "")
     }
@@ -72,9 +72,9 @@ net_summary_bin = function(GRN,TFs,thr,a,b){
 
   names_GRN = matrix("i",dim(GRN)[1]*dim(GRN)[2] ,2)
 
-  block = 1:dim(GRN)[1]
+  block = seq_len(dim(GRN)[1])
 
-  for (i in 1:dim(GRN)[2]){
+  for (i in seq_len(dim(GRN)[2])){
 
     names_GRN[block,2] = gene_names
    names_GRN[block,1] = gene_names[TFs[i]]

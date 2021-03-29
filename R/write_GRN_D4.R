@@ -6,8 +6,8 @@
 #' @return a file with the network written as a file.
 #' @examples
 #' data(D4_multi_1)
-#' Net = Kboost(D4_multi_1)
-#' write_GRN_D4(Net$GRN, 1:100, "D4_multi_1_network.txt")
+#' Net = kboost(D4_multi_1)
+#' write_GRN_D4(Net$GRN, seq_len(100), "D4_multi_1_network.txt")
 write_GRN_D4 = function(GRN,TFs, filename){
   G = dim(GRN)[1]
   K = dim(GRN)[2]
@@ -18,7 +18,7 @@ write_GRN_D4 = function(GRN,TFs, filename){
   if (is.null(rownames(GRN))){
     # Create generic names.
     gen_names = matrix("G",G,1)
-    for (i in 1:G){
+    for (i in seq_len(G)){
       gen_names[i]= paste(gen_names[i],toString(i),sep = "")
     }
   } else {
@@ -26,8 +26,8 @@ write_GRN_D4 = function(GRN,TFs, filename){
   }
   # start counter
   count_  = 1
-  for (j in 1:K){
-      for (i in 1:G){
+  for (j in seq_len(K)){
+      for (i in seq_len(G)){
         # write in table.
         if (TFs[j]!=i){
           table_grn[count_, ] = c(gen_names[TFs[j]], gen_names[i] , toString(GRN[i,j]))

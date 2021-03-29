@@ -12,7 +12,7 @@
 #' data(D4_multi_1)
 #' Net = kboost(D4_multi_1)
 #' g_mat1 = tab_2_matrix_D4(KBoost::G_D4_multi_1,100)
-#' aupr_auroc = AUPR_AUROC_matrix(Net$GRN,g_mat1,auto_remove = TRUE, 1:100)
+#' aupr_auroc = AUPR_AUROC_matrix(Net$GRN,g_mat1,auto_remove = TRUE,  seq_len(100))
 
 AUPR_AUROC_matrix=function(Net,G_mat, auto_remove,TFs, upper_limit){
 
@@ -25,7 +25,7 @@ AUPR_AUROC_matrix=function(Net,G_mat, auto_remove,TFs, upper_limit){
      # A counter for indexing the matrices to copy.
      j_o = 1
      j_f = dim(Net)[1]-1
-     for (j in 1:dim(Net)[2]){
+     for (j in seq_len(dim(Net)[2])){
        g_mat[j_o:j_f,1] = G_mat[-TFs[j],j]
        net[j_o:j_f,1] = Net[-TFs[j],j]
        # update j_o and j_f.
@@ -88,9 +88,9 @@ AUPR_AUROC_matrix=function(Net,G_mat, auto_remove,TFs, upper_limit){
   G_mat = G_mat[o]
 
  if (upper_limit_ex){
-   Net = Net[1:upper_limit]
+   Net = Net[seq_len(upper_limit)]
 
-   G_mat = G_mat[1:upper_limit]
+   G_mat = G_mat[seq_len(upper_limit)]
    N = upper_limit
  }
 
@@ -118,7 +118,7 @@ AUPR_AUROC_matrix=function(Net,G_mat, auto_remove,TFs, upper_limit){
     # The condition we are using is Positives: Net<=Net[idx] = 1 and Negatives: Net>Net[idx] = 0.
     TP[i] = sum(G_mat[(idx):N])
     FP[i] = N-(idx-1) - TP[i]
-    FN[i] = sum(G_mat[1:(idx-1)])
+    FN[i] = sum(G_mat[seq_len(idx-1)])
     TN[i] = ((idx-1)) -FN[i]
     Prec[i] = TP[i]/(TP[i]+FP[i])
     Rec[i] = TP[i]/(TP[i]+FN[i])

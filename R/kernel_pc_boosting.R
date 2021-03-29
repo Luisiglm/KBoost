@@ -35,7 +35,7 @@ kernel_pc_boosting = function(X,Y,g,v,ite,thr){
   }
   # Cool Beans pal!
   # Loop over the variables in X.
-  for (j in 1:K){
+  for (j in seq_len(K)){
     # RBF Kernel.
     k = RBF_K(X[,j],g)
     # Normalize kernel
@@ -47,11 +47,11 @@ kernel_pc_boosting = function(X,Y,g,v,ite,thr){
   # Initiate f.
   f = matrix(mean(Y),N,1)
   # Iterate in a for loop.
-  for (i in 1:ite){
+  for (i in seq_len(ite)){
     pse = Y-f
     # Perform a regression with each variable individually.
     reg = list()
-    for (j in 1:K){
+    for (j in seq_len(K)){
       # Do the regression on the pseudo residuals.
       reg[[j]] = ort_reg(kpca[[j]],pse,v)
       if (j == 1){
