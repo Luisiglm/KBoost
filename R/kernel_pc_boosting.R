@@ -16,7 +16,7 @@ kernel_pc_boosting = function(X,Y,g,v,ite,thr){
   # First we will calculate the RBF kernel and the Kernel Principal Components.
   kpca = list()
   K = dim(X)[2]
-  N = dim(Y)[1]
+  N = length(Y)
   # Make sure that the input is correct.
   if (N != dim(X)[1]){
     stop("The dimensions of X and Y are different")
@@ -57,13 +57,13 @@ kernel_pc_boosting = function(X,Y,g,v,ite,thr){
       if (j == 1){
         best = j
         best_llik = reg[[j]]$llik
-      } else if (best_llik<reg[[j]]$llik){
+      } else if (best_llik>reg[[j]]$llik){
         best = j
         best_llik = reg[[j]]$llik
       }
     }
     #update f.
-    f = f + reg[[best]]$f
+    f = f + v*kpca[[best]]%*%reg[[best]]$b
   }
   # get sum of squares, the object reg contains llik = log(sse/N)*(-N/2)
   sse = exp((reg[[best]]$llik)/(-N/2))
