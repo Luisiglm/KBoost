@@ -17,3 +17,8 @@ the matrix with the RBF kernel
 \description{
 Function to calculate the RBF Kernel of a matrix X with width g.
 }
+\examples{
+x = rnorm(100,0,1)
+k = RBF_K(x,40)
+
+}

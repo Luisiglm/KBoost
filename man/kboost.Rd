@@ -20,7 +20,16 @@ kboost(X, TFs, g, v, prior_weights, ite)
 \item{ite}{an integer with the number of iterations (default ite = 3)}
 }
 \value{
-results for kboots.
+a list with the results for kboost, with fields:
+GRN a matrix with the posterior edge probability after network refinement.
+GRN_UP a matrix with the posterior edges before refinement.
+model a matrix with logical values for the TFs selected for each gene.
+g the width parameter for the RBF kernel.
+v the shrinkage parameter.
+prior the prior of each model.
+TFs a matrix with integers of each gene that is a TF.
+prior_weights the prior_weights with which KBoost was run.
+run_time a sacalar with the running time.
 }
 \description{
 A function to run KBoost.

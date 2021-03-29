@@ -25,3 +25,9 @@ function an sum of squared errors.
 \description{
 Function to perform Kernel Principal Component Boosting
 }
+\examples{
+data(D4_multi_1)
+Y = scale(matrix(D4_multi_1[,91],100,1))
+X = scale(D4_multi_1[,-91])
+res = kernel_pc_boosting(X,Y, g= 40, v = 0.5, ite = 3, thr = 1e-10)
+}

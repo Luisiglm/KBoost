@@ -77,7 +77,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
   # Let's check that TFs. It needs to be a vector of integers.
   # Check the length of TFs is not larger than the number of columns of X.
   if (missing(TFs)){
-    TFs = 1:G
+    TFs = seq_len(G)
     K = length(TFs)
   } else {
     if (length(TFs)> dim(X)[2]){
@@ -167,7 +167,7 @@ greedy_uni_boosting = function(f, X, TFs, kpca,v){
   res = list()
   llik = matrix(-Inf,dim(X)[2],length(TFs))
   # Cool Beans! Now, we'll do a for loop along the TFs.
-  for (j in 1:length(TFs)){
+  for (j in seq_len(length(TFs))){
     # do an orthogonal regression with the KPCAs and the pseudo-residuals.
     res[[j]] = ort_reg(kpca[[j]],pse[,-TFs[j]],v)
     # get log_likelihoods.
@@ -192,7 +192,7 @@ init_prior = function(prior_weights){
   K = dim(prior_weights)[2]
   prior = matrix(0,G,K)
   p = rowSums(log(1-prior_weights))
-  for (j in 1:K){
+  for (j in seq_len(K)){
     # Initialize a prior with all TFs missing.
     prior[,j] = p
 
@@ -305,7 +305,7 @@ add_tf_get_post = function(priors,lliks,model,f,reg, kpca, TFs,v){
   # Store the priors of the best models.
   prior_best = matrix(0,G,1)
   # For each gene in G do.
-  for (i in 1:G){
+  for (i in seq_len(G)){
     # Find the Tf with the highest posterior.
     best = which.max(posteriors[i,])
     # update model.
@@ -341,7 +341,7 @@ log_BMA = function(posterior_list, model_list, G,K,ite){
   # Pre-allocate memory for the GRN. this is the output.
   bma = matrix(0,G,K)
   # we are going to access the elements of a each list. Then concatenate them in a matrix.
-  for (i in 1:length(posterior_list)){
+  for (i in seq_len(length(posterior_list))){
     if (i ==1){
       post = posterior_list[[i]]
     } else {
@@ -353,7 +353,7 @@ log_BMA = function(posterior_list, model_list, G,K,ite){
   }
   # cool beans.
   # We will do bma per gene.
-  for (i in 1:G){
+  for (i in seq_len(G)){
     # we will remove the -infinity values cause they can cause numeric problems. They're value is zero in natural space they don't affect the sum.
     idx_inf = is.infinite(post[i,])
     p = post[i,!(idx_inf)]
@@ -378,13 +378,13 @@ log_BMA = function(posterior_list, model_list, G,K,ite){
     j_end = K
     rang_ = j_o:j_end
     # Loop over the iterations to perform the model averaging.
-    for (t in 1:ite){
+    for (t in seq_len(ite)){
       # Access the model at iteration t.
       model_t = model_list[[t]]
       # Keep only the model for gene i.
       model_t = model_t[i,]
       # At each iteration we have evaluated each TF. So we will do another loop. Maybe not too efficient?
-      for (j in 1:K){
+      for (j in seq_len(K)){
         # copy model_t
         model_j = model_t
         # add the TF j.
@@ -454,9 +454,9 @@ prior_model = function(prior_weights, model, prior){
   # We will return prior modified.
   # we will add the log prior weight if TF is not in current and delete the log(1-Prior[i,j]).
   # Otherwise it remains the same.
-  for (j in 1:K){
+  for (j in seq_len(K)){
     # For every gene we have a binary model with the TFs added in previous iterations.
-    for (i in 1:G){
+    for (i in seq_len(G)){
       # If TF was NOT there before.
       if (!model[i,j]){
 
@@ -489,7 +489,7 @@ print_completion_message = function(){
   messages[[12]] = "Go raibh math agat! (Feeling Irish today :D) "
   messages[[13]] = "Oh My God Hun! You're such a star for using KBoost like I can't cope. xoxo. (We're feeling pretty today :D)"
   # Randomly choose a message.
-  idx =  sample(1:length(messages),1)
+  idx =  sample(seq_len(length(messages)),1)
   print(messages[[idx]])
 }
 ################################################################################

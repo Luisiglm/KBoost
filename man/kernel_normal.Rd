@@ -15,3 +15,8 @@ feature centred kernel.
 \description{
 A function to perform feature normalization in kernel space.
 }
+\examples{
+x = rnorm(100,0,1)
+k = RBF_K(x,40)
+k_ = kernel_normal(k)
+}
