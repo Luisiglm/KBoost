@@ -7,7 +7,11 @@
 #' @param thr a threshold to discard Kernel principal components whose eigenvalue
 #' @export
 #' @return function an sum of squared errors.
-#' 
+#' @examples
+#' data(D4_multi_1)
+#' Y = scale(matrix(D4_multi_1[,91],100,1))
+#' X = scale(D4_multi_1[,-91])
+#' res = kernel_pc_boosting(X,Y, g= 40, v = 0.5, ite = 3, thr = 1e-10)
 kernel_pc_boosting = function(X,Y,g,v,ite,thr){
   # First we will calculate the RBF kernel and the Kernel Principal Components.
   kpca = list()
@@ -34,6 +38,8 @@ kernel_pc_boosting = function(X,Y,g,v,ite,thr){
   for (j in 1:K){
     # RBF Kernel.
     k = RBF_K(X[,j],g)
+    # Normalize kernel
+    k = kernel_normal(k)
     # PC on Kernel.
     kpca[[j]] = KPC(k,thr)
   }

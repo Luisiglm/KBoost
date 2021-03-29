@@ -4,6 +4,10 @@
 #' @param g a positive scalar with the width parameter.
 #' @export
 #' @return the matrix with the RBF kernel
+#' @examples
+#' x = rnorm(100,0,1)
+#' k = RBF_K(x,40)
+#'
 RBF_K = function(x,g){
 
   # formula K(i,j) = exp(-Euc[i,j]/g), Euc is the Squared Euclidean distance.
