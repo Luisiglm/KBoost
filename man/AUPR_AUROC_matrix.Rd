@@ -2,12 +2,13 @@
 % Please edit documentation in R/AUPR_AUROC_matrix.R
 \name{AUPR_AUROC_matrix}
 \alias{AUPR_AUROC_matrix}
-\title{Function to calculate the AUROC and AUPR of a known network.This function was made to test the R implementation of the KBoost Package.}
+\title{Function to calculate the AUROC and AUPR of a known network.
+This function was made to test the R implementation of the KBoost Package.}
 \usage{
 AUPR_AUROC_matrix(Net, G_mat, auto_remove, TFs, upper_limit)
 }
 \arguments{
-\item{Net}{An inferred networks with the predictive probabilities that a transcription factor regulates a gene.}
+\item{Net}{An inferred gene regulatory network}
 
 \item{G_mat}{A matrix with the gold standard network.}
 
@@ -15,17 +16,19 @@ AUPR_AUROC_matrix(Net, G_mat, auto_remove, TFs, upper_limit)
 
 \item{TFs}{the indexes of the rows of Net that are TFs.}
 
-\item{upper_limit}{Top number of edges to use. In DREAM5, the authors suggest using the top 100,000 edges only.}
+\item{upper_limit}{Top number of edges to use.}
 }
 \value{
 list object with AUPR and AUROC of gold standard in matrix format.
 }
 \description{
-Function to calculate the AUROC and AUPR of a known network.This function was made to test the R implementation of the KBoost Package.
+Function to calculate the AUROC and AUPR of a known network.
+This function was made to test the R implementation of the KBoost Package.
 }
 \examples{
-data(D4_multi_1)
-Net = kboost(D4_multi_1)
-g_mat1 = tab_2_matrix_D4(KBoost::G_D4_multi_1,100)
-aupr_auroc = AUPR_AUROC_matrix(Net$GRN,g_mat1,auto_remove = TRUE,  seq_len(100))
+    data(D4_multi_1)
+    Net = kboost(D4_multi_1)
+    g_mat1 = tab_2_matrix_D4(KBoost::G_D4_multi_1,100)
+    aupr_auroc = AUPR_AUROC_matrix(Net$GRN,g_mat1,auto_remove = TRUE,  seq_len(100))
+
 }

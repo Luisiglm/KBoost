@@ -2,30 +2,30 @@
 % Please edit documentation in R/KBoost_human_symbol.R
 \name{KBoost_human_symbol}
 \alias{KBoost_human_symbol}
-\title{Function to automatically build and run KBoost on data with human gene expression values and Symbol gene names.}
+\title{Function for KBoost on data from a human sample annotated with Symbol names.}
 \usage{
 KBoost_human_symbol(X, gen_names, g, v, ite, pos_weight, neg_weight)
 }
 \arguments{
-\item{X}{an NxG numeric matrix with the expression values of G genes and N obersvations. The gen_names can come as column names.}
+\item{X}{an NxG matrix with the expression values of G genes and N samples.}
 
-\item{gen_names}{a set of SYMBOL gene names that correspond to the names of the columns of X.}
+\item{gen_names}{SYMBOL gene names corresponding to the columns of X.}
 
-\item{g}{a positive scalar with the width parameter for the RBF kernel. (default g = 40)}
+\item{g}{a positive no., width parameter for the RBF kernel. (default g = 40)}
 
-\item{v}{a double between 0 and 1 with the shrinkage parameter. (default v =0.1)}
+\item{v}{a double between 0 and 1, the shrinkage parameter. (default v =0.1)}
 
 \item{ite}{an integer with the number of iterations (default ite = 3)}
 
-\item{pos_weight}{a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was observed before.}
+\item{pos_weight}{no. between 0 and 1. Prior that a TF regulate a gene.}
 
-\item{neg_weight}{a scalar between 0 and 1. This is the prior probability of observing a TF regulate a gene given that this interaction was NOT observed before.}
+\item{neg_weight}{no. between 0 and 1, for TF gene pairs not seen before.}
 }
 \value{
 list with results of KBoost on a dataset with Symbol gene names.
 }
 \description{
-Function to automatically build and run KBoost on data with human gene expression values and Symbol gene names.
+Function for KBoost on data from a human sample annotated with Symbol names.
 }
 \examples{
 X = rnorm(50,0,1)

@@ -7,13 +7,13 @@
 grid_search_kboost(dataset, vs, gs, ite)
 }
 \arguments{
-\item{dataset}{One of the two datasets in the package, 1 for IRMA or 2 for DREAM4 multifactorial.}
+\item{dataset}{1 for IRMA or 2 for DREAM4 multifactorial.}
 
 \item{vs}{The range of values of v. All values need to be between 0 and 1.}
 
 \item{gs}{The range of values of g. All values need to be larger than 0.}
 
-\item{ite}{An integer that is the number of iterations.Left fixed in this case.}
+\item{ite}{An integer that is the number of iterations, fixed in this case.}
 }
 \value{
 list with auprs and aurocs of different values of vs and gs and ite.

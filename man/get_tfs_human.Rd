@@ -7,7 +7,7 @@
 get_tfs_human(gen_names)
 }
 \arguments{
-\item{gen_names}{a vector or matrix with the Symbol Gene Names of the system to be analysed.}
+\item{gen_names}{a vector or matrix with the Symbol Gene Names of the system.}
 }
 \value{
 indexes of gen_names who are TFs.

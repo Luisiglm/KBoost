@@ -2,28 +2,26 @@
 % Please edit documentation in R/net_summary_bin.R
 \name{net_summary_bin}
 \alias{net_summary_bin}
-\title{Function to summarize the GRN filtered with a threshold,
-the function produces a table version of the GRN, outdegree and indegree centrality, Katz centrality and closeness centrality.}
+\title{Function to summarize the GRN filtered with a threshold,}
 \usage{
 net_summary_bin(GRN, TFs, thr, a, b)
 }
 \arguments{
-\item{GRN}{An inferred networks with the predictive probabilities that a transcription facor regulates a gene.}
+\item{GRN}{An inferred network}
 
 \item{TFs}{A vector with indexes of the rows of GRN which correspond to TFs.}
 
-\item{thr}{a scalar between 0 and 1, edges with posterior probabilities lower than thr will be discarded.}
+\item{thr}{a scalar between 0 and 1, a threshold for posterior probabilities.}
 
-\item{a}{a scalar for the Katz and PageRank centrality measures. Default the inverse of the largest eigenvalue of GRN.}
+\item{a}{parameter for Katz and PageRank centrality (default the inverse of the largest eigenvalue of GRN.}
 
-\item{b}{a scalar for the Katz and PageRank centrality measures. Default is 1.}
+\item{b}{parameter for Katz and PageRank centrality (default b = 1).}
 }
 \value{
-a list with the network analysed.
+list with table version of the GRN, outdegree and indegree, and closeness centrality.
 }
 \description{
 Function to summarize the GRN filtered with a threshold,
-the function produces a table version of the GRN, outdegree and indegree centrality, Katz centrality and closeness centrality.
 }
 \examples{
 data(D4_multi_1)
