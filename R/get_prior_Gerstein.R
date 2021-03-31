@@ -22,12 +22,12 @@ get_prior_Gerstein = function(gen_names, TFs, pos_weight, neg_weight){
     gerst_ours = which(is.element(gen_names[TFs],tfs_gerstein))
     # If there's no overlap we will just return the prior_weights.
     if (length(gerst_ours)==0){
-        print("This is not an error message. There was no overlap between the TFs in the prior and yours. The object <prior_weights> is a matrix with all weights equal to <neg_weight>. It can still be used for KBoost :).")
+        message("This is not an error message. There was no overlap between the TFs in the prior and yours. The object <prior_weights> is a matrix with all weights equal to <neg_weight>. It can still be used for KBoost :).")
     } else {
-        message = paste("There are ", toString(length(gerst_ours)), sep = " ")
-        message = paste(message,"TFs that appear also in the prior network.", sep = " ")
-        print(message)
-        for (j in length(gerst_ours)){
+        msg = paste("There are", toString(length(gerst_ours)), sep = " ")
+        msg = paste(msg,"TFs that also appear in the prior network.", sep = " ")
+        message(msg)
+        for (j in seq_len(length(gerst_ours))){
             # identify the rows in P with TF j.
             tf_j = gen_names[TFs[gerst_ours[j]]]
             # Now match it with P!

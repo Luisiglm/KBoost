@@ -24,7 +24,7 @@ kboost = function(X,TFs,g,v,prior_weights,ite){
     # First we will check the input and make sure everything is in the right form.
     inpts = check_input(X, TFs,g,v,prior_weights,ite)
     # Now that we have the inputs. We can proceed.
-    print('KBoost has checked your input and will proceed. Once we are finished, a random completion message will appear.')
+    message('KBoost has checked your input and will proceed. Once we are finished, a random completion message will appear.')
     grn = kboost_main(inpts$X, inpts$TFs, inpts$g, inpts$v, inpts$prior_weights, inpts$ite)
     # Let's return grn.
     # format the results a bit if gene names were given.
@@ -477,7 +477,7 @@ print_completion_message = function(){
     messages[[13]] = "Oh My God Hun! You're such a star for using KBoost like I can't cope. xoxo. (We're feeling pretty today :D)"
     # Randomly choose a message.
     idx =  sample(seq_len(length(messages)),1)
-    print(messages[[idx]])
+    message(messages[[idx]])
 }
 ################################################################################
 # Function to do the first iteration of KBoost it performs a univariate RBF KPC regression per TF in X.
