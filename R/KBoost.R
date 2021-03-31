@@ -5,6 +5,7 @@
 #' @param g a positive no., width parameter for RBF kernel. (default g = 40)
 #' @param v a no. between 0 and 1 with the shrinkage parameter. (default v =0.1)
 #' @param prior_weights it can be a scalar or GxK. (default 0.5)
+#' @param ite an integer for the maximum number of iterations (default 3)
 #' @export
 #' @return a list with the results for kboost, with fields:
 #' GRN a matrix with the posterior edge probability after network refinement.

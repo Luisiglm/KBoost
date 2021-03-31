@@ -16,6 +16,8 @@ kboost(X, TFs, g, v, prior_weights, ite)
 \item{v}{a no. between 0 and 1 with the shrinkage parameter. (default v =0.1)}
 
 \item{prior_weights}{it can be a scalar or GxK. (default 0.5)}
+
+\item{ite}{an integer for the maximum number of iterations (default 3)}
 }
 \value{
 a list with the results for kboost, with fields:
