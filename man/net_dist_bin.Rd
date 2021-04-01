@@ -13,11 +13,13 @@ net_dist_bin(GRN, TFs, thr)
 
 \item{thr}{A scalar between 0 and 1 that is used select the edges with large posterior probabilities.}
 }
+\value{
+a matrix with the distances between edges.
+}
 \description{
 Function to calculate the distance between nodes.
 }
 \examples{
-library(KBoost)
 data(D4_multi_1)
 Net = kboost(D4_multi_1)
 dist = net_dist_bin(Net$GRN,Net$TFs,0.1)

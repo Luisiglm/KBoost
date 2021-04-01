@@ -13,6 +13,14 @@ write_GRN_D4(GRN, TFs, filename)
 
 \item{filename}{a string with the filename.}
 }
+\value{
+a file with the network written as a file.
+}
 \description{
 Function to write output in DREAM4 Challenge Format.
+}
+\examples{
+data(D4_multi_1)
+Net = kboost(D4_multi_1)
+write_GRN_D4(Net$GRN, seq_len(100), "D4_multi_1_network.txt")
 }

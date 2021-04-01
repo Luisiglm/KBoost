@@ -2,7 +2,7 @@
 % Please edit documentation in R/irma_check.R
 \name{irma_check}
 \alias{irma_check}
-\title{Function to produce the AUPR and AUROC Results on the DREAM4 Multifactorial Challenge.}
+\title{Function to produce the AUPR and AUROC Results on the IRMA datasets.}
 \usage{
 irma_check(v, g, ite)
 }
@@ -13,6 +13,13 @@ irma_check(v, g, ite)
 
 \item{ite}{an integer with number of iterations.}
 }
+\value{
+list with aurocs and auprs for IRMA datasets
+}
 \description{
-Function to produce the AUPR and AUROC Results on the DREAM4 Multifactorial Challenge.
+Function to produce the AUPR and AUROC Results on the IRMA datasets.
+}
+\examples{
+res = irma_check()
+
 }

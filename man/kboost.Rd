@@ -7,18 +7,35 @@
 kboost(X, TFs, g, v, prior_weights, ite)
 }
 \arguments{
-\item{X}{an NxG numeric matrix with the expression values of G genes and N obersvations.}
+\item{X}{an NxG matrix with the expression values of G genes and N obvs..}
 
-\item{TFs}{a Kx1 numeric matrix with integers that are the indexes of columns of X with genes that encode TFs.}
+\item{TFs}{a Kx1 numeric matrix with integers of columns of X that are TFs.}
 
-\item{g}{a positive scalar with the width parameter for the RBF kernel. (default g = 40)}
+\item{g}{a positive no., width parameter for RBF kernel. (default g = 40)}
 
-\item{v}{a double between 0 and 1 with the shrinkage parameter. (default v =0.1)}
+\item{v}{a no. between 0 and 1 with the shrinkage parameter. (default v =0.1)}
 
-\item{prior_weights}{it can be a scalar or a GxK matrix with the prior weights for the prior probability that a TF regulates a gene.(default 0.5 for all values)}
+\item{prior_weights}{it can be a scalar or GxK. (default 0.5)}
 
-\item{ite}{an integer with the number of iterations (default ite = 3)}
+\item{ite}{an integer for the maximum number of iterations (default 3)}
+}
+\value{
+a list with the results for kboost, with fields:
+GRN a matrix with the posterior edge probability after network refinement.
+GRN_UP a matrix with the posterior edges before refinement.
+model a matrix with logical values for the TFs selected for each gene.
+g the width parameter for the RBF kernel.
+v the shrinkage parameter.
+prior the prior of each model.
+TFs a matrix with integers of each gene that is a TF.
+prior_weights the prior_weights with which KBoost was run.
+run_time a sacalar with the running time.
 }
 \description{
 A function to run KBoost.
+}
+\examples{
+data(D4_multi_1)
+Net = kboost(D4_multi_1)
+
 }

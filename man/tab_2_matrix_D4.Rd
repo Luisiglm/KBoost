@@ -11,6 +11,13 @@ tab_2_matrix_D4(g_table, G)
 
 \item{G}{the number of genes.}
 }
+\value{
+a network in table format transformed into a matrix.
+}
 \description{
 Function to produce the gold standard of the DREAM4 Multifactorial Challenge in matrix format.
+}
+\examples{
+g_table = KBoost::G_D4_multi_1
+g_mat = tab_2_matrix_D4(g_table,100)
 }

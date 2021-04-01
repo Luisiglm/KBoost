@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_prior_Gerstein.R
 \name{get_prior_Gerstein}
 \alias{get_prior_Gerstein}
-\title{Function to build a prior automatically using a previously built Network on ChIP-Seq.}
+\title{Function to build a prior using a previously built Network on ChIP-Seq.}
 \usage{
 get_prior_Gerstein(gen_names, TFs, pos_weight, neg_weight)
 }
@@ -11,10 +11,19 @@ get_prior_Gerstein(gen_names, TFs, pos_weight, neg_weight)
 
 \item{TFs}{the indexes of gene names which are TFs.}
 
-\item{pos_weight}{the prior weight for edges that were previously found in the Gerstein network.}
+\item{pos_weight}{the prior weight for edges previously found in Gerstein 2011}
 
-\item{neg_weight}{the prior weight for edges that were not found in the Gerstein network.}
+\item{neg_weight}{the prior weight for edges not found in the Gerstein 2011/}
+}
+\value{
+matrix with prior probabilities of the Tf target edges.
 }
 \description{
-Function to build a prior automatically using a previously built Network on ChIP-Seq.
+Function to build a prior using a previously built Network on ChIP-Seq.
+}
+\examples{
+gen_names = c("TP53","MDM2","FOXM1","ESR1","CTCF","YY1")
+tfs = get_tfs_human(gen_names)
+prior = get_prior_Gerstein(gen_names,tfs,0.6,0.4)
+
 }

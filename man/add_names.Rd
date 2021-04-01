@@ -11,6 +11,19 @@ add_names(grn, gen_names)
 
 \item{gen_names}{a vector with the gene names.}
 }
+\value{
+grn a GRN object with elements with user-defined gene names.
+}
 \description{
 Function to add names to network for the user.
+}
+\examples{
+    data(D4_multi_1)
+    Net = kboost(D4_multi_1)
+    g_names = matrix("G",100,1)
+    for (i in seq_along(g_names)){
+        g_names[i] = paste(g_names[i],toString(i), sep = "")
+    }
+    Net = add_names(Net,g_names)
+
 }

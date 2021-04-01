@@ -11,6 +11,15 @@ KPC(K, thr)
 
 \item{thr}{a positive scalar which is a threshold to discard eigen-vectors based on eigen-values.}
 }
+\value{
+the kernel principal components
+}
 \description{
 Function to calculate the principal components of a kernel.
+}
+\examples{
+x = rnorm(100,0,1)
+k = RBF_K(x,1)
+k_ = kernel_normal(k)
+kpca = KPC(k,1e-8)
 }
