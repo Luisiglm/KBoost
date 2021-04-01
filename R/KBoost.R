@@ -5,6 +5,7 @@
 #' @param g a positive no., width parameter for RBF kernel. (default g = 40)
 #' @param v a no. between 0 and 1 with the shrinkage parameter. (default v =0.1)
 #' @param prior_weights it can be a scalar or GxK. (default 0.5)
+#' @param ite an integer for the maximum number of iterations (default 3)
 #' @export
 #' @return a list with the results for kboost, with fields:
 #' GRN a matrix with the posterior edge probability after network refinement.
@@ -24,7 +25,7 @@ kboost = function(X,TFs,g,v,prior_weights,ite){
     # First we will check the input and make sure everything is in the right form.
     inpts = check_input(X, TFs,g,v,prior_weights,ite)
     # Now that we have the inputs. We can proceed.
-    print('KBoost has checked your input and will proceed. Once we are finished, a random completion message will appear.')
+    message('KBoost has checked your input and will proceed. Once we are finished, a random completion message will appear.')
     grn = kboost_main(inpts$X, inpts$TFs, inpts$g, inpts$v, inpts$prior_weights, inpts$ite)
     # Let's return grn.
     # format the results a bit if gene names were given.
@@ -477,7 +478,7 @@ print_completion_message = function(){
     messages[[13]] = "Oh My God Hun! You're such a star for using KBoost like I can't cope. xoxo. (We're feeling pretty today :D)"
     # Randomly choose a message.
     idx =  sample(seq_len(length(messages)),1)
-    print(messages[[idx]])
+    message(messages[[idx]])
 }
 ################################################################################
 # Function to do the first iteration of KBoost it performs a univariate RBF KPC regression per TF in X.
