@@ -1,7 +1,7 @@
 Package: KBoost
 Type: Package
 Title: Inference of gene regulatory networks from gene expression data
-Version: 0.1.0
+Version: 0.99.0
 Authors@R: c(
     person(given = "Luis F.",
            family = "Iglesias-Martinez",
