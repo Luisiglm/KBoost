@@ -14,11 +14,11 @@
 #' @return list with table version of the GRN, outdegree and indegree, and closeness centrality.
 #'
 net_summary_bin = function(GRN,TFs,thr,a,b){
-    if (class(GRN)[1]!="matrix"){
+    if (!is(GRN,"matrix")){
         stop("GRN needs to be an GxK matrix with G number of genes and K TFs")
     }
     # Check X values are numerical
-    else if (class(GRN[1,1])=="character" ){
+    else if (is(GRN[1,1],"character")){
         stop("The values of X need to be numeric")
     }
     if (missing(TFs)){

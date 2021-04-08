@@ -55,9 +55,9 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
     # Fill in the default values for certain parameters
     #CHECK MATRIX
     # Check X is a matrix
-    if (class(X)[1]!="matrix"){
+    if (!is(X,"matrix")){
         stop("X needs to be an NxG matrix with N equal observations and G number of genes")
-    } else if (class(X[1,1])!="numeric"){ # check that X is numeric.
+    } else if (!is(X[1,1],"numeric")){ # check that X is numeric.
         stop("The values of X need to be numeric")
     }
     ## We will scale X.
@@ -90,7 +90,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
             stop("TFs s a vector of indexes of columns of X which are TFs. The values in TFs are larger than the number of columns.")
         }
         # check TFs are numeric or integers.
-        if (class(TFs[1])!="integer"){
+        if (!is(TFs[1],"integer")){
             stop("TFs need to be a matrix with integers corresponding to the columns in X that are TFs")
         }
         K = length(TFs)
@@ -111,7 +111,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
                 stop("A prior network exactly equal to 0 or 1 for every edge would yield a posterior network equal to the prior network")
             }
             prior_weights = matrix(prior_weights,G,K)
-        } else  if (class(prior_weights)[1]!="matrix"||dim(prior_weights)[1]!=G||dim(prior_weights)[2]!=K){
+        } else  if (!is(prior_weights,"matrix")||dim(prior_weights)[1]!=G||dim(prior_weights)[2]!=K){
             stop("the prior network needs to be a GxK matrix, where G is the number of genes and K the number of TFs, or a scalar between 0 and 1")
         } else {
         Uni_P = unique(as.vector(prior_weights))
@@ -124,7 +124,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
     if (missing(g)){
         g = 60
     } else {
-        if (class(g)!="numeric" || length(g)>1 || g<=0){
+        if (!is(g,"numeric") || length(g)>1 || g<=0){
             stop("g needs to be a number greater than 0")
         }
     }
