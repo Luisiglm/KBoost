@@ -7,7 +7,7 @@ Authors@R: c(
            family = "Iglesias-Martinez",
            role = c("aut", "cre"),
            email = "luis.iglesiasmartinez@ucd.ie",
-           comment = c(ORCID = "https://orcid.org/0000-0002-9110-2189")),
+           comment = c(ORCID = "0000-0002-9110-2189")),
     person(given = "Barbara",
            family = "de Kegel",
            role = "aut"),
