@@ -13,7 +13,7 @@
 #' @export
 #' @return list with table version of the GRN, outdegree and indegree, and closeness centrality.
 #'
-net_summary_bin = function(GRN,TFs,thr,a,b){
+net_summary_bin <- function(GRN,TFs,thr,a,b){
     if (!is(GRN,"matrix")){
         stop("GRN needs to be an GxK matrix with G number of genes and K TFs")
     }
@@ -22,10 +22,10 @@ net_summary_bin = function(GRN,TFs,thr,a,b){
         stop("The values of X need to be numeric")
     }
     if (missing(TFs)){
-        TFs = seq_len(dim(GRN)[2])
+        TFs <- seq_len(dim(GRN)[2])
     }
     if (missing(thr)){
-        thr = 0.2
+        thr <- 0.2
     }
     if (length(TFs)!=dim(GRN)[2]){
         stop("TFs needs to be a K vector with indexes that correspond to the TFs in G.")
@@ -33,50 +33,50 @@ net_summary_bin = function(GRN,TFs,thr,a,b){
     # check if the GRN has gene names
     if (length(rownames(GRN))==0){
         # Create generic names for genes
-        gene_names = matrix("G",dim(GRN)[1],1)
+        gene_names <- matrix("G",dim(GRN)[1],1)
         for (i in seq_len(dim(GRN)[1])){
-            gene_names[i] = paste("G",toString(i), sep = "")
+            gene_names[i] <- paste("G",toString(i), sep = "")
         }
     } else{
-        gene_names = rownames(GRN)
+        gene_names <- rownames(GRN)
     }
     # Filter network according to posterior.
-    GRN = 1*(GRN>=thr)
-    G = dim(GRN)[1]
-    K = dim(GRN)[2]
+    GRN <- 1*(GRN>=thr)
+    G <- dim(GRN)[1]
+    K <- dim(GRN)[2]
     # Generate Table result.
-    edges_GRN = matrix(GRN,dim(GRN)[1]*dim(GRN)[2],1)
-    names_GRN = matrix("i",dim(GRN)[1]*dim(GRN)[2] ,2)
-    block = seq_len(dim(GRN)[1])
+    edges_GRN <- matrix(GRN,dim(GRN)[1]*dim(GRN)[2],1)
+    names_GRN <- matrix("i",dim(GRN)[1]*dim(GRN)[2] ,2)
+    block <- seq_len(dim(GRN)[1])
     for (i in seq_len(dim(GRN)[2])){
-        names_GRN[block,2] = gene_names
-        names_GRN[block,1] = gene_names[TFs[i]]
-        block = block + dim(GRN)[1]
+        names_GRN[block,2] <- gene_names
+        names_GRN[block,1] <- gene_names[TFs[i]]
+        block <- block + dim(GRN)[1]
     }
-    GRN_table = data.frame(names_GRN,edges_GRN)
-    colnames(GRN_table) = c("TF","Target","edge")
-    o= order(GRN_table[,3], decreasing = TRUE)
-    GRN_table = GRN_table[o,]
+    GRN_table <- data.frame(names_GRN,edges_GRN)
+    colnames(GRN_table) <- c("TF","Target","edge")
+    o <- order(GRN_table[,3], decreasing = TRUE)
+    GRN_table <- GRN_table[o,]
     # Calculate the Outdegree Centrality
-    Outdegree = colSums(GRN)
-    names(Outdegree) = gene_names[TFs]
-    o = order(Outdegree,decreasing = TRUE)
-    Outdegree = Outdegree[o]
+    Outdegree <- colSums(GRN)
+    names(Outdegree) <- gene_names[TFs]
+    o <- order(Outdegree,decreasing <- TRUE)
+    Outdegree <- Outdegree[o]
     # Calculate the Indegree Centrality
-    Indegree = rowSums(GRN)
-    names(Indegree) = gene_names
-    o = order(Indegree,decreasing = TRUE)
-    Indegree = Indegree[o]
+    Indegree <- rowSums(GRN)
+    names(Indegree) <- gene_names
+    o <- order(Indegree,decreasing = TRUE)
+    Indegree <- Indegree[o]
     # Calculate the Distance Matrix
-    dist_mat = net_dist_bin(GRN,TFs,thr)
-    rownames(dist_mat) = gene_names
-    colnames(dist_mat) = gene_names[TFs]
+    dist_mat <- net_dist_bin(GRN,TFs,thr)
+    rownames(dist_mat) <- gene_names
+    colnames(dist_mat) <- gene_names[TFs]
     # Calculate the Closeness Centrality
-    dist_mat_2=(1/dist_mat)
-    diag(dist_mat_2) = 0
-    Close_centr =  colSums(dist_mat_2)
-    names(Close_centr) = gene_names[TFs]
-    o = order(Close_centr,decreasing = TRUE)
-    Close_centr = Close_centr[o]
-    return(list(GRN_table = GRN_table, Outdegree = Outdegree, Indegree = Indegree, Close_centr = Close_centr, dist_mat=  dist_mat ))
+    dist_mat_2 <- (1/dist_mat)
+    diag(dist_mat_2) <- 0
+    Close_centr <- colSums(dist_mat_2)
+    names(Close_centr) <- gene_names[TFs]
+    o <- order(Close_centr,decreasing = TRUE)
+    Close_centr <- Close_centr[o]
+    return(list(GRN_table <- GRN_table, Outdegree <- Outdegree, Indegree <- Indegree, Close_centr <- Close_centr, dist_mat <-  dist_mat ))
 }

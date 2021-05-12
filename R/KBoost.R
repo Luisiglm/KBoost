@@ -19,18 +19,18 @@
 #' run_time a sacalar with the running time.
 #' @examples
 #' data(D4_multi_1)
-#' Net = kboost(D4_multi_1)
+#' Net <- kboost(D4_multi_1)
 #'
-kboost = function(X,TFs,g,v,prior_weights,ite){
+kboost <- function(X,TFs,g,v,prior_weights,ite){
     # First we will check the input and make sure everything is in the right form.
-    inpts = check_input(X, TFs,g,v,prior_weights,ite)
+    inpts <- check_input(X, TFs,g,v,prior_weights,ite)
     # Now that we have the inputs. We can proceed.
     message('KBoost has checked your input and will proceed. Once we are finished, a random completion message will appear.')
-    grn = kboost_main(inpts$X, inpts$TFs, inpts$g, inpts$v, inpts$prior_weights, inpts$ite)
+    grn <- kboost_main(inpts$X, inpts$TFs, inpts$g, inpts$v, inpts$prior_weights, inpts$ite)
     # Let's return grn.
     # format the results a bit if gene names were given.
     if (!is.null(colnames(X))){
-        grn = add_names(grn,colnames(X))
+        grn <- add_names(grn,colnames(X))
     }
     print_completion_message()
     return(grn)
@@ -50,7 +50,7 @@ kboost = function(X,TFs,g,v,prior_weights,ite){
 # return list with input revised and default values added
 #
 
-check_input = function(X,TFs,g,v,prior_weights,ite){
+check_input <- function(X,TFs,g,v,prior_weights,ite){
     # Check Input and
     # Fill in the default values for certain parameters
     #CHECK MATRIX
@@ -61,8 +61,8 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
         stop("The values of X need to be numeric")
     }
     ## We will scale X.
-    X = scale(X)
-    S = colSums(X)
+    X <- scale(X)
+    S <- colSums(X)
     # We will check if there are any Nas or Infs.
     if (sum(is.infinite(S))>0){
         stop("After scaling some values of X are infinite.This can be because some of the variances in X are zero or some values are infinite. Check X. ")
@@ -70,14 +70,14 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
         stop("After scaling some values of X are not a number (NAN).This can be because some of the variances in X are zero or some values are infinite or NAN. Check X. ")
     }
     # Cool beans!
-    G = dim(X)[2]
-    N = dim(X)[1]
+    G <- dim(X)[2]
+    N <- dim(X)[1]
     # CHECK TFs
     # Let's check that TFs. It needs to be a vector of integers.
     # Check the length of TFs is not larger than the number of columns of X.
     if (missing(TFs)){
-        TFs = seq_len(G)
-        K = length(TFs)
+        TFs <- seq_len(G)
+        K <- length(TFs)
     } else {
         if (length(TFs)> dim(X)[2]){
             stop("TFs needs to be shorter than the number of columns of X. It is a vector of indexes of columns of X which are TFs.")
@@ -93,7 +93,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
         if (!is(TFs[1],"integer")){
             stop("TFs need to be a matrix with integers corresponding to the columns in X that are TFs")
         }
-        K = length(TFs)
+        K <- length(TFs)
     }
     if (K==1){
         stop("If only 1 TF is used the network will be a vector column of  ones")
@@ -101,7 +101,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
     # CHECK prior_Weights!
     # Check if prior was specified.
     if (missing(prior_weights)){
-        prior_weights = matrix(0.5,G,K)
+        prior_weights <- matrix(0.5,G,K)
     } else {
         if (min(prior_weights)<0 || max(prior_weights)>1){
             stop("the prior network has to have values between 0 and 1")
@@ -110,11 +110,11 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
             if (prior_weights==0||prior_weights==1){
                 stop("A prior network exactly equal to 0 or 1 for every edge would yield a posterior network equal to the prior network")
             }
-            prior_weights = matrix(prior_weights,G,K)
+            prior_weights <- matrix(prior_weights,G,K)
         } else  if (!is(prior_weights,"matrix")||dim(prior_weights)[1]!=G||dim(prior_weights)[2]!=K){
             stop("the prior network needs to be a GxK matrix, where G is the number of genes and K the number of TFs, or a scalar between 0 and 1")
         } else {
-        Uni_P = unique(as.vector(prior_weights))
+        Uni_P <- unique(as.vector(prior_weights))
         }
         if (length(Uni_P)<3 && length(Uni_P)==1 && (Uni_P == 0||Uni_P==1)){
             stop("Here, A prior network exactly equal to 0 or 1 for every edge would yield a posterior network equal to the prior network")
@@ -122,7 +122,7 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
     }
     # CHECK g!
     if (missing(g)){
-        g = 60
+        g <- 60
     } else {
         if (!is(g,"numeric") || length(g)>1 || g<=0){
             stop("g needs to be a number greater than 0")
@@ -131,20 +131,20 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
     # CHECK v!
     if (missing(v)){
         if (N>10){
-            v = 10/N
+            v <- 10/N
         } else{
-            v = 0.5
+            v <- 0.5
         }
     } else if (length(v)>1 || v>1 || v<=0){
         stop("v needs to be a number between 0 and 1")
     }
         # CHECK ite (Maximum number of iterations)!
     if (missing(ite)){
-        ite = 3
+        ite <- 3
     } else if (ite<=0 || length(ite)>1){
         stop("Max needs to be an integer greater than 0")
     }
-    return(list(X = X, TFs= TFs, g =g, v =v, prior_weights = prior_weights, ite = ite))
+    return(list(X <- X, TFs <- TFs, g <- g, v <- v, prior_weights <- prior_weights, ite <- ite))
 }
 ##############################################################################
 #### Function to perform boosting iterations in KBoost.
@@ -158,20 +158,20 @@ check_input = function(X,TFs,g,v,prior_weights,ite){
 # return list with log likelihoods and residuals
 ### greedy_uni_boosting
 
-greedy_uni_boosting = function(f, X, TFs, kpca,v){
+greedy_uni_boosting <- function(f, X, TFs, kpca,v){
     # Calculate pseudo-residuals.
-    pse = X-f
+    pse <- X-f
     # Pre-allocate memory for outputs.
-    res = list()
-    llik = matrix(-Inf,dim(X)[2],length(TFs))
+    res <- list()
+    llik <- matrix(-Inf,dim(X)[2],length(TFs))
     # Cool Beans! Now, we'll do a for loop along the TFs.
     for (j in seq_len(length(TFs))){
         # do an orthogonal regression with the KPCAs and the pseudo-residuals.
-        res[[j]] = ort_reg(kpca[[j]],pse[,-TFs[j]],v)
+        res[[j]] <- ort_reg(kpca[[j]],pse[,-TFs[j]],v)
         # get log_likelihoods.
-        llik[-TFs[j],j] = res[[j]]$llik
+        llik[-TFs[j],j] <- res[[j]]$llik
     }
-    return(list(res = res, llik = llik))
+    return(list(res <- res, llik <- llik))
 }
 ###############################################################################
 
@@ -182,19 +182,19 @@ greedy_uni_boosting = function(f, X, TFs, kpca,v){
 #          model a logical matrix with all values false (No TFs)
 ## init_prior
 
-init_prior = function(prior_weights){
+init_prior <- function(prior_weights){
     # if Prior has 1 values it is better they are removed as it will yield sets of models with -Inf probabilities.
     # we will return p_o and Model as a standard all False binary matrix.
-    G = dim(prior_weights)[1]
-    K = dim(prior_weights)[2]
-    prior = matrix(0,G,K)
-    p = rowSums(log(1-prior_weights))
+    G <- dim(prior_weights)[1]
+    K <- dim(prior_weights)[2]
+    prior <- matrix(0,G,K)
+    p <- rowSums(log(1-prior_weights))
     for (j in seq_len(K)){
         # Initialize a prior with all TFs missing.
-        prior[,j] = p
+        prior[,j] <- p
     }
-    model = matrix(FALSE, G,K)
-    return(list(prior = prior, model= model))
+    model <- matrix(FALSE, G,K)
+    return(list(prior <- prior, model <- model))
 }
 ###############################################################################
 
@@ -209,70 +209,70 @@ init_prior = function(prior_weights){
 
 ## kboost main
 
-kboost_main = function(X,TFs,g,v,prior_weights,ite){
+kboost_main <- function(X,TFs,g,v,prior_weights,ite){
     # do first part of the algorithm.
     # initialize f. In pre-processing we have set the mean of X to zero.
-    pc = proc.time()[3]
-    N = dim(X)[1]
-    G = dim(X)[2]
-    K = length(TFs)
-    f = matrix(0,N,G)
+    pc <- proc.time()[3]
+    N <- dim(X)[1]
+    G <- dim(X)[2]
+    K <- length(TFs)
+    f <- matrix(0,N,G)
     # cool beans! Let's do the first part.
     # the function will run a for loop, calculate RBF_kernel per TF, the Kernel principal components, and the regression results.
-    part_1 = tf_kpc_reg(X,TFs,g,v)
+    part_1 <- tf_kpc_reg(X,TFs,g,v)
     # part_1 is a list which contains a) kpca a list with the K, kernel principal components and res, with the regression results.
     # We can put the regression results in a matrix for clarity.
-    kpca = part_1$kpca
-    lliks = part_1$llik
+    kpca <- part_1$kpca
+    lliks <- part_1$llik
     ## Maybe clear part_1 after??
     # Initialize the prior and model.
-    p_m = init_prior(prior_weights)
-    prior = p_m$prior
-    model = p_m$model
+    p_m <- init_prior(prior_weights)
+    prior <- p_m$prior
+    model <- p_m$model
     ## clear p_m after??
     # We need to make tf_check to avoid indexing issues.
     # update priors for the potential models.
-    prior_new = prior_model(prior_weights, model, prior)
+    prior_new <- prior_model(prior_weights, model, prior)
     # add a tf per gene and get posteriors.### CHANGE NEW VERSION WE ADD V.
-    added_tfs = add_tf_get_post(prior_new,lliks,model,f, part_1$results, kpca,TFs,v)
+    added_tfs <- add_tf_get_post(prior_new,lliks,model,f, part_1$results, kpca,TFs,v)
     # cool beans! We need to store the results. we keep the models and posteriors in two lists.
-    model_list =  list()
-    posterior_list = list()
-    model_list[[1]] = model
-    model = added_tfs$model
+    model_list <-  list()
+    posterior_list <- list()
+    model_list[[1]] <- model
+    model <- added_tfs$model
     # update f
-    f = added_tfs$f
+    f <- added_tfs$f
     # We will update the model after, as this is necessary for the next iterations.
-    posterior_list[[1]] = added_tfs$posteriors
+    posterior_list[[1]] <- added_tfs$posteriors
     # update the prior.
-    prior = matrix(added_tfs$prior_best,G,K)
+    prior <- matrix(added_tfs$prior_best,G,K)
     # If we have more than 1 iterations, as is usually the case, we will run a for loop a perform boosting.
     if (ite>1){
         for (i in 2:ite){
             # We will use the function greedy_uni_boosting.
-            res = greedy_uni_boosting(f, X,TFs, kpca, v)
+            res <- greedy_uni_boosting(f, X,TFs, kpca, v)
             # update priors for the potential models.
-            prior_new = prior_model(prior_weights, model, prior)
+            prior_new <- prior_model(prior_weights, model, prior)
             # add a tf per gene and get posteriors. The same tf can be added multiple times. ## CHANGE NEW VERSION WE ADD V.
-            added_tfs = add_tf_get_post(prior_new,res$llik,model,f, res$res, kpca,TFs,v)
+            added_tfs <- add_tf_get_post(prior_new,res$llik,model,f, res$res, kpca,TFs,v)
             # update fs.
-            f = added_tfs$f
+            f <- added_tfs$f
             # store old model.
-            model_list[[i]] = model
+            model_list[[i]] <- model
             # update model.
-            model = added_tfs$model
+            model <- added_tfs$model
             # update posteriors list.
-            posterior_list[[i]] =  added_tfs$posteriors
+            posterior_list[[i]] <-  added_tfs$posteriors
             # update prior.
-            prior = matrix(added_tfs$prior_best,G,K)
+            prior <- matrix(added_tfs$prior_best,G,K)
         }
     }
     # Cool beans! Now we need to combine the iterations. we have the log_BMA function that does it.
-    BMA = log_BMA(posterior_list, model_list, G,K,ite)
+    BMA <- log_BMA(posterior_list, model_list, G,K,ite)
     # that's what we are returning son! Thanks for using KBoost, we hope you enjoyed the ride!
     # we will do the heuristic post-processing.
-    BMA_proc = net_refine(BMA)
-    return(list(GRN= BMA_proc, GRN_UP = BMA,model = model, g = g, v = v, prior = prior,TFs = TFs, prior_weights = prior_weights, run_time = proc.time()[3] - pc ))
+    BMA_proc <- net_refine(BMA)
+    return(list(GRN <- BMA_proc, GRN_UP <- BMA,model <- model, g <- g, v <- v, prior <- prior,TFs <- TFs, prior_weights <- prior_weights, run_time <- proc.time()[3] - pc ))
 }
 ################################################################################
 
@@ -289,34 +289,34 @@ kboost_main = function(X,TFs,g,v,prior_weights,ite){
 # return list with posterior and tf to add in the next iteration.
 #
 
-add_tf_get_post = function(priors,lliks,model,f,reg, kpca, TFs,v){
+add_tf_get_post <- function(priors,lliks,model,f,reg, kpca, TFs,v){
     # For each gene will select the new TF with the highest posterior.
     # the number of genes are the rows.
-    G = dim(priors)[1]
+    G <- dim(priors)[1]
     # the number of TFs are the columns.
-    K = dim(priors)[2]
-    posteriors = lliks + priors
+    K <- dim(priors)[2]
+    posteriors <- lliks + priors
     # Store the priors of the best models.
-    prior_best = matrix(0,G,1)
+    prior_best <- matrix(0,G,1)
     # For each gene in G do.
     for (i in seq_len(G)){
         # Find the Tf with the highest posterior.
-        best = which.max(posteriors[i,])
+        best <- which.max(posteriors[i,])
         # update model.
-        model[i,best] = TRUE
+        model[i,best] <- TRUE
         # update prior
-        prior_best[i] = priors[i,best]
+        prior_best[i] <- priors[i,best]
         # update f.
         # adjust best for potential indexes issues related to tf_check.
         if (TFs[best]<i){
-            idx = i - 1
+            idx <- i - 1
         } else {
-            idx = i
+            idx <- i
         }
         #### USE COEFFICIENTS INSTEAD### We also added v to the input.
-        f[,i] = f[,i]+v*kpca[[best]]%*%reg[[best]]$b[,idx]
+        f[,i] <- f[,i]+v*kpca[[best]]%*%reg[[best]]$b[,idx]
     }
-    return(list(model = model,posteriors = posteriors, prior_best = prior_best, f = f))
+    return(list(model <- model,posteriors <- posteriors, prior_best <- prior_best, f <- f))
 }
 ################################################################################
 
@@ -331,16 +331,16 @@ add_tf_get_post = function(priors,lliks,model,f,reg, kpca, TFs,v){
 #
 # log BMA
 
-log_BMA = function(posterior_list, model_list, G,K,ite){
+log_BMA <- function(posterior_list, model_list, G,K,ite){
     # Pre-allocate memory for the GRN. this is the output.
-    bma = matrix(0,G,K)
+    bma <- matrix(0,G,K)
     # we are going to access the elements of a each list. Then concatenate them in a matrix.
     for (i in seq_len(length(posterior_list))){
         if (i ==1){
-            post = posterior_list[[i]]
+            post <- posterior_list[[i]]
         } else {
-            tempo = cbind(post,posterior_list[[i]])
-            post = tempo
+            tempo <- cbind(post,posterior_list[[i]])
+            post <- tempo
             # we will clear tempo because it is no longer used.
             rm(tempo)
         }
@@ -349,47 +349,47 @@ log_BMA = function(posterior_list, model_list, G,K,ite){
     # We will do bma per gene.
     for (i in seq_len(G)){
         # we will remove the -infinity values cause they can cause numeric problems. They're value is zero in natural space they don't affect the sum.
-        idx_inf = is.infinite(post[i,])
-        p = post[i,!(idx_inf)]
+        idx_inf <- is.infinite(post[i,])
+        p <- post[i,!(idx_inf)]
         # No we have all the log-posteriors. We can do some tricks to add them in this form.
         # It is much faster to use the exponential though. However there is a chance that it will be a number under the
         # precision of the computer. We will multiply them by a constant, c, that will garantee this will not happen.
         # we will use 1e-30 as an arbitrary threshold.
         if (min(p)<log(1e-30)){
-            c = log(1e-30) - min(p)
+            c <- log(1e-30) - min(p)
         } else {
-            c = 0
+            c <- 0
         }
         # We get the exponential of the log posteriors.
-        p = exp(c + p)
+        p <- exp(c + p)
         # And we can get the sum.
-        p = p/sum(p)
+        p <- p/sum(p)
         # Make a new variable p_ with zeros.
-        p_ = matrix(0,dim(post)[2],1)
-        p_[!idx_inf] = p
+        p_ <- matrix(0,dim(post)[2],1)
+        p_[!idx_inf] <- p
         # Great! now we have the averaged model posteriors. We need to add them according the Tfs that belong in each model.
-        j_o = 1
-        j_end = K
-        rang_ = j_o:j_end
+        j_o <- 1
+        j_end <- K
+        rang_ <- j_o:j_end
         # Loop over the iterations to perform the model averaging.
         for (t in seq_len(ite)){
             # Access the model at iteration t.
-            model_t = model_list[[t]]
+            model_t <- model_list[[t]]
             # Keep only the model for gene i.
-            model_t = model_t[i,]
+            model_t <- model_t[i,]
             # At each iteration we have evaluated each TF. So we will do another loop. Maybe not too efficient?
             for (j in seq_len(K)){
-            # copy model_t
-            model_j = model_t
-            # add the TF j.
-            model_j[j] = TRUE
-            # add the normalized model to the model_j
-            bma[i,model_j] = bma[i,model_j]+p_[rang_[j]]
-        }
+                # copy model_t
+                model_j <- model_t
+                # add the TF j.
+                model_j[j] <- TRUE
+                # add the normalized model to the model_j
+                bma[i,model_j] <- bma[i,model_j]+p_[rang_[j]]
+            }
         # Now we need to move the window j_o and j_end.
-        j_o = j_end + 1
-        j_end = j_end + K
-        rang_ = j_o:j_end
+        j_o <- j_end + 1
+        j_end <- j_end + K
+        rang_ <- j_o:j_end
         }
     }
     return(bma)
@@ -402,11 +402,11 @@ log_BMA = function(posterior_list, model_list, G,K,ite){
 # return the log marginal likelihood
 #
 ## marginal log likelihood
-log_lik= function(Y,F){
+log_lik <- function(Y,F){
     # Calculate the sum of squared errors.
-    llik = colSums((F-Y)^2)/dim(Y)[1]
+    llik <- colSums((F-Y)^2)/dim(Y)[1]
     # Elevate to the power of (n/2). n is the number of observations.
-    llik = log(llik)*(-(dim(Y)[1])/2)
+    llik <- log(llik)*(-(dim(Y)[1])/2)
     return(llik)
 }
 ################################################################################
@@ -417,16 +417,16 @@ log_lik= function(Y,F){
 # v a shrinkage parameter.
 # returns: a list with b: the regression coefficients and the marginal loglik.
 #
-ort_reg = function(X,Y,v){
-    # Y = X%*%b .
+ort_reg <- function(X,Y,v){
+    # Y <- X%*%b .
     # here t(X)%*%X = diag(T) (T is the number of columns of X). % denotes matrix multiplication in R.
     # b = solve(t(X)%*%X)%*%t(X)%*%Y = diag(T)%*%t(X)%*%Y.
-    b = diag(dim(X)[2])%*%(t(X)%*%Y)
-    f = v*X%*%b
+    b <- diag(dim(X)[2])%*%(t(X)%*%Y)
+    f <- v*X%*%b
     # Calculate the log marginal likelihood.
-    llik = log_lik(f,Y)
+    llik <- log_lik(f,Y)
     # Maybe we won't return f as it might be using too much memory?## CHANGE HERE ## We STOPPED RETURNING F.
-    results = list(b = b, llik = llik)
+    results <- list(b <- b, llik <- llik)
     return(results)
 }
 ################################################################################
@@ -437,10 +437,10 @@ ort_reg = function(X,Y,v){
 # prior the results of the prior probability of the previous iteration
 # returns the prior probability for the models.
 #
-prior_model = function(prior_weights, model, prior){
+prior_model <- function(prior_weights, model, prior){
     # At the start of each boosting iteration we will calculate the new model priors.
-    G = dim(prior_weights)[1]
-    K = dim(prior_weights)[2]
+    G <- dim(prior_weights)[1]
+    K <- dim(prior_weights)[2]
     # We will return prior modified.
     # we will add the log prior weight if TF is not in current and delete the log(1-Prior[i,j]).
     # Otherwise it remains the same.
@@ -449,7 +449,7 @@ prior_model = function(prior_weights, model, prior){
         for (i in seq_len(G)){
         # If TF was NOT there before.
             if (!model[i,j]){
-                prior[i,j] = prior[i,j] + log(prior_weights[i,j]) - log(1-prior_weights[i,j])
+                prior[i,j] <- prior[i,j] + log(prior_weights[i,j]) - log(1-prior_weights[i,j])
             }
         }
     }
@@ -460,24 +460,24 @@ prior_model = function(prior_weights, model, prior){
 # function that prints completion message
 #
 
-print_completion_message = function(){
+print_completion_message <- function(){
     # We have a list with ten random completion messages.
-    messages = list()
-    messages[[1]]= "Cool beans friend! Thanks for using KBoost."
-    messages[[2]]= "KBoost has finished KBoosting your data! Thanks for using KBoost amig@!."
-    messages[[3]]= "You sure sound smart for using KBoost! Thanks!"
-    messages[[4]]= "KBoost has finished running.(We're feeling serious today)"
-    messages[[5]]= "Gracias por usar KBoost! (Feeling Spanish today :D)"
-    messages[[6]]= "Ihr Netzwerk ist bereit. Danke.(Feeling German today :D)"
-    messages[[7]]= "La sua GRN e prontissima! Grazie per utilizare KBoost.(Feeling Italian today :D)"
-    messages[[8]]= "La GRN esta a punt! Moltes gracies per utilizar KBoost. (Feeling Catalan today :D)"
-    messages[[9]]=  "Fardig! Takk Takk! (Feeling Swedish today :D)"
-    messages[[10]]= "Klaar! dankjewel vriend! (Feeling Dutch today :D)"
-    messages[[11]] = "Ta ya lista la tu GRN. Muches gracies por usar KBoost! (Feeling Asturian today :D)"
-    messages[[12]] = "Go raibh math agat! (Feeling Irish today :D) "
-    messages[[13]] = "Oh My God Hun! You're such a star for using KBoost like I can't cope. xoxo. (We're feeling pretty today :D)"
+    messages <- list()
+    messages[[1]] <- "Cool beans friend! Thanks for using KBoost."
+    messages[[2]] <- "KBoost has finished KBoosting your data! Thanks for using KBoost amig@!."
+    messages[[3]] <- "You sure sound smart for using KBoost! Thanks!"
+    messages[[4]] <- "KBoost has finished running.(We're feeling serious today)"
+    messages[[5]] <- "Gracias por usar KBoost! (Feeling Spanish today :D)"
+    messages[[6]] <- "Ihr Netzwerk ist bereit. Danke.(Feeling German today :D)"
+    messages[[7]] <- "La sua GRN e prontissima! Grazie per utilizare KBoost.(Feeling Italian today :D)"
+    messages[[8]] <- "La GRN esta a punt! Moltes gracies per utilizar KBoost. (Feeling Catalan today :D)"
+    messages[[9]] <- "Fardig! Takk Takk! (Feeling Swedish today :D)"
+    messages[[10]] <- "Klaar! dankjewel vriend! (Feeling Dutch today :D)"
+    messages[[11]] <- "Ta ya lista la tu GRN. Muches gracies por usar KBoost! (Feeling Asturian today :D)"
+    messages[[12]] <-  "Go raibh math agat! (Feeling Irish today :D) "
+    messages[[13]] <- "Oh My God Hun! You're such a star for using KBoost like I can't cope. xoxo. (We're feeling pretty today :D)"
     # Randomly choose a message.
-    idx =  sample(seq_len(length(messages)),1)
+    idx <-  sample(seq_len(length(messages)),1)
     message(messages[[idx]])
 }
 ################################################################################
@@ -487,21 +487,21 @@ print_completion_message = function(){
 # g the width of the RBF kernel.
 # v the shrinkage parameter.
 # returns: the kernel principal components, the log marginal likelihoods and the coefficients in list res.
-tf_kpc_reg = function(X,TFs,g,v){
+tf_kpc_reg <- function(X,TFs,g,v){
     # Create a list to store the values of the KPC.
-    kpca = list()
-    res = list()
-    llik = matrix(-Inf,dim(X)[2],length(TFs))
+    kpca <- list()
+    res <- list()
+    llik <- matrix(-Inf,dim(X)[2],length(TFs))
     for (j in seq_along(TFs)){
         # Get the RBF Kernel.
-        k = RBF_K(X[,TFs[j]],g)
+        k <- RBF_K(X[,TFs[j]],g)
         # Normalize the RBF Kernel.
-        k = kernel_normal(k)
+        k <- kernel_normal(k)
         # Get the KPCs.
-        kpca[[j]] = KPC(k, 1e-4)
+        kpca[[j]] <- KPC(k, 1e-4)
         # Do the orthogonal regression. Exclude the Gene for the same TF. Autoregulation is not included here.
-        res[[j]] = ort_reg(kpca[[j]],X[,-TFs[j]],v)
-        llik[-TFs[j],j] = res[[j]]$llik
+        res[[j]] <- ort_reg(kpca[[j]],X[,-TFs[j]],v)
+        llik[-TFs[j],j] <- res[[j]]$llik
     }
-    return(list(results = res, kpca = kpca, llik = llik))
+    return(list(results <- res, kpca <- kpca, llik <- llik))
 }
