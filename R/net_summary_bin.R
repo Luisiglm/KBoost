@@ -60,7 +60,7 @@ net_summary_bin <- function(GRN,TFs,thr,a,b){
     # Calculate the Outdegree Centrality
     Outdegree <- colSums(GRN)
     names(Outdegree) <- gene_names[TFs]
-    o <- order(Outdegree,decreasing <- TRUE)
+    o <- order(Outdegree,decreasing = TRUE)
     Outdegree <- Outdegree[o]
     # Calculate the Indegree Centrality
     Indegree <- rowSums(GRN)
