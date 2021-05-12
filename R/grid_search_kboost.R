@@ -53,5 +53,5 @@ grid_search_kboost <- function(dataset, vs, gs , ite){
             }
         }
     }
-    return(list(auprs <- auprs, aurocs <- aurocs))
+    return(list(auprs = auprs, aurocs = aurocs))
 }

@@ -36,6 +36,6 @@ A function to run KBoost.
 }
 \examples{
 data(D4_multi_1)
-Net = kboost(D4_multi_1)
+Net <- kboost(D4_multi_1)
 
 }

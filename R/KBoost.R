@@ -144,7 +144,7 @@ check_input <- function(X,TFs,g,v,prior_weights,ite){
     } else if (ite<=0 || length(ite)>1){
         stop("Max needs to be an integer greater than 0")
     }
-    return(list(X <- X, TFs <- TFs, g <- g, v <- v, prior_weights <- prior_weights, ite <- ite))
+    return(list(X = X, TFs = TFs, g = g, v = v, prior_weights = prior_weights, ite = ite))
 }
 ##############################################################################
 #### Function to perform boosting iterations in KBoost.
@@ -171,7 +171,7 @@ greedy_uni_boosting <- function(f, X, TFs, kpca,v){
         # get log_likelihoods.
         llik[-TFs[j],j] <- res[[j]]$llik
     }
-    return(list(res <- res, llik <- llik))
+    return(list(res = res, llik = llik))
 }
 ###############################################################################
 
@@ -194,7 +194,7 @@ init_prior <- function(prior_weights){
         prior[,j] <- p
     }
     model <- matrix(FALSE, G,K)
-    return(list(prior <- prior, model <- model))
+    return(list(prior = prior, model = model))
 }
 ###############################################################################
 
@@ -272,7 +272,7 @@ kboost_main <- function(X,TFs,g,v,prior_weights,ite){
     # that's what we are returning son! Thanks for using KBoost, we hope you enjoyed the ride!
     # we will do the heuristic post-processing.
     BMA_proc <- net_refine(BMA)
-    return(list(GRN <- BMA_proc, GRN_UP <- BMA,model <- model, g <- g, v <- v, prior <- prior,TFs <- TFs, prior_weights <- prior_weights, run_time <- proc.time()[3] - pc ))
+    return(list(GRN = BMA_proc, GRN_UP = BMA,model = model, g = g, v = v, prior = prior,TFs = TFs, prior_weights = prior_weights, run_time = proc.time()[3] - pc ))
 }
 ################################################################################
 
@@ -316,7 +316,7 @@ add_tf_get_post <- function(priors,lliks,model,f,reg, kpca, TFs,v){
         #### USE COEFFICIENTS INSTEAD### We also added v to the input.
         f[,i] <- f[,i]+v*kpca[[best]]%*%reg[[best]]$b[,idx]
     }
-    return(list(model <- model,posteriors <- posteriors, prior_best <- prior_best, f <- f))
+    return(list(model = model,posteriors = posteriors, prior_best = prior_best, f = f))
 }
 ################################################################################
 
@@ -426,7 +426,7 @@ ort_reg <- function(X,Y,v){
     # Calculate the log marginal likelihood.
     llik <- log_lik(f,Y)
     # Maybe we won't return f as it might be using too much memory?## CHANGE HERE ## We STOPPED RETURNING F.
-    results <- list(b <- b, llik <- llik)
+    results <- list(b = b, llik = llik)
     return(results)
 }
 ################################################################################
@@ -503,5 +503,5 @@ tf_kpc_reg <- function(X,TFs,g,v){
         res[[j]] <- ort_reg(kpca[[j]],X[,-TFs[j]],v)
         llik[-TFs[j],j] <- res[[j]]$llik
     }
-    return(list(results <- res, kpca <- kpca, llik <- llik))
+    return(list(results = res, kpca = kpca, llik = llik))
 }

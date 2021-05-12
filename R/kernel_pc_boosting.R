@@ -67,5 +67,5 @@ kernel_pc_boosting <- function(X,Y,g,v,ite,thr){
     }
     # get sum of squares, the object reg contains llik = log(sse/N)*(-N/2)
     sse <- exp((reg[[best]]$llik)/(-N/2))
-    return(list(f  <- f, sse <- sse))
+    return(list(f  = f, sse = sse))
 }

@@ -78,5 +78,5 @@ net_summary_bin <- function(GRN,TFs,thr,a,b){
     names(Close_centr) <- gene_names[TFs]
     o <- order(Close_centr,decreasing = TRUE)
     Close_centr <- Close_centr[o]
-    return(list(GRN_table <- GRN_table, Outdegree <- Outdegree, Indegree <- Indegree, Close_centr <- Close_centr, dist_mat <-  dist_mat ))
+    return(list(GRN_table = GRN_table, Outdegree = Outdegree, Indegree = Indegree, Close_centr = Close_centr, dist_mat =  dist_mat ))
 }
