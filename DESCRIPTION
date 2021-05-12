@@ -1,7 +1,7 @@
 Package: KBoost
 Type: Package
 Title: Inference of gene regulatory networks from gene expression data
-Version: 0.99.1
+Version: 0.99.2
 Authors@R: c(
     person(given = "Luis F.",
            family = "Iglesias-Martinez",
@@ -14,11 +14,10 @@ Authors@R: c(
     person(given = "Walter",
            family = "Kolch",
            role = "aut"))
-Description: Package to infer gene regulatory networks from gene expression data. This package uses kernel principal component regression, boosting and Bayesian model averaging to infer gene regualtory networks.
+Description: Reconstructing gene regulatory networks and transcription factor activity is crucial to understand biological processes and holds potential for developing personalized treatment. Yet, it is still an open problem as state-of-art algorithm are often not able to handle large amounts of data. Furthermore, many of the present methods predict numerous false positives and are unable to integrate other sources of information such as previously known interactions. Here we introduce KBoost, an algorithm that uses kernel PCA regression, boosting and Bayesian model averaging for fast and accurate reconstruction of gene regulatory networks. KBoost can also use a prior network built on previously known transcription factor targets. We have benchmarked KBoost using three different datasets against other high performing algorithms. The results show that our method compares favourably to other methods across datasets.
 Depends: R (>= 4.1), stats, utils
-License: LGPL (>= 3)
+License: GPL-2 | GPL-3
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.1.1
 URL: https://github.com/Luisiglm/KBoost
 biocViews: Network, GraphAndNetwork, Bayesian, NetworkInference, GeneRegulation, Transcriptomics, SystemsBiology, Transcription, GeneExpression, Regression, PrincipalComponent
